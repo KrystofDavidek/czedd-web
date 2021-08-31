@@ -1,0 +1,28 @@
+.contact-form {
+  flex-direction: column;
+  display: flex;
+  margin: 1rem;
+  align-items: center;
+}
+
+.contact-form__items {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.contact-form__button {
+  width: 5rem;
+  background-color: var(--color-quaternary-background);
+  border-color: var(--color-quaternary-background);
+}
+
+.contact-form__button:hover {
+  background-color: var(--secondary-font-color);
+  border-color: var(--secondary-font-color);
+}
+
+.contact-form__button:focus {
+  background-color: var(--secondary-font-color);
+  border-color: var(--secondary-font-color);
+}
