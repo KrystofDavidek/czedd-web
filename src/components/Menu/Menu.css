@@ -1,21 +1,31 @@
 .menu {
   justify-content: center;
+  background-color: var(--color-quaternary-background);
 }
 
 .menu__item {
   display: flex;
   align-items: center;
-  margin: 0.5rem;
+  padding: 0.5rem;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.menu__item:hover {
+  background-color: var(--secondary-font-color);
 }
 
 a {
   text-decoration: none;
+  color: var(--tertiary-font-color);
 }
 
-.menu__item:hover {
-  background-color: grey;
+a:hover {
+  text-decoration: none;
+  color: var(--tertiary-font-color);
 }
 
 .is-active {
-  background-color: rgb(190, 185, 185);
+  border-bottom: 2px solid var(--secondary-font-color);
+  padding-bottom: 0.1rem;
 }

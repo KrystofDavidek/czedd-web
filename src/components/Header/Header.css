@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  background-color: var(--color-tertiary-background);
+}
+
+.header__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  padding: 1rem;
+  font-size: 2rem;
+  width: 100%;
+  background-color: var(--color-secondary-background);
+}
+
+.header__title-part {
+  margin-bottom: 0;
+}
+
+.header__title-highlight {
+  color: var(--secondary-font-color);
+}
