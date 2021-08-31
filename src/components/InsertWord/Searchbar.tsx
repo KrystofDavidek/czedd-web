@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BEMHelper from "react-bem-helper";
 import "./Searchbar.css";
-import { Form, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
+import { Form, Row, Col, Button } from "react-bootstrap";
 
 const classes = new BEMHelper({
   name: "searchbar",
@@ -17,7 +17,7 @@ export const Searchbar: React.FC<ISearchbarProps> = ({ onSearch }) => {
   useEffect(() => {
     const listener = (event: any) => {
       if (event.code === "Enter" || event.code === "NumpadEnter") {
-        search(input);
+        search();
       }
     };
     document.addEventListener("keydown", listener);
@@ -26,17 +26,16 @@ export const Searchbar: React.FC<ISearchbarProps> = ({ onSearch }) => {
     };
   }, []);
 
-  const search = (input: string) => {
+  const search = () => {
     onSearch(input);
   };
-  search(input);
+  search(); // vymazat inicializaci
 
   return (
     <Form
       {...classes()}
       onSubmit={(e) => {
         e.preventDefault();
-        search(input);
       }}
     >
       <Row>
@@ -53,7 +52,7 @@ export const Searchbar: React.FC<ISearchbarProps> = ({ onSearch }) => {
           />
         </Col>
         <Col>
-          <Button {...classes("button")} type="submit">
+          <Button {...classes("button")} type="submit" onClick={search}>
             Search
           </Button>
         </Col>
