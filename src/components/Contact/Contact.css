@@ -26,3 +26,9 @@
   background-color: var(--secondary-font-color);
   border-color: var(--secondary-font-color);
 }
+
+@media screen and (max-width: 44.9rem) {
+  .contact-form__items {
+    width: 100%;
+  }
+}

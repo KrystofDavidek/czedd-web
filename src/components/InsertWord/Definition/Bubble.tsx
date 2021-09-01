@@ -24,7 +24,7 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, relatedWords }) => {
   const a2 = relatedWords.a2 ? (
     <Col>
       <h2 {...classes("subtitle")}>A2</h2>
-      <p {...classes("text")}>{parse(relatedWords.a2.split(" ").join("<br>"))}</p>
+      <p {...classes("text")}>{parse(relatedWords.a2)}</p>
     </Col>
   ) : (
     <></>
@@ -32,7 +32,7 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, relatedWords }) => {
   const b1 = relatedWords.b1 ? (
     <Col>
       <h2 {...classes("subtitle")}>B1</h2>
-      <p {...classes("text")}>{parse(relatedWords.b1.split(" ").join("<br>"))}</p>
+      <p {...classes("text")}>{parse(relatedWords.b1)}</p>
     </Col>
   ) : (
     <></>
@@ -40,7 +40,7 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, relatedWords }) => {
   const b2 = relatedWords.b2 ? (
     <Col>
       <h2 {...classes("subtitle")}>B2</h2>
-      <p {...classes("text")}>{parse(relatedWords.b2.split(" ").join("<br>"))}</p>
+      <p {...classes("text")}>{parse(relatedWords.b2)}</p>
     </Col>
   ) : (
     <></>
