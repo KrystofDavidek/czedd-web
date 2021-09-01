@@ -19,28 +19,29 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
   console.log(definition);
 
   if (!definition.cz_definice) {
-    definitionCard = <Card title={definition.slovo} text={[definition.preklad]} />;
+    definitionCard = <Card title={[definition.slovo]} text={[definition.preklad]} isBubbleActive={true} />;
   } else if (definition.en_definice) {
     definitionCard = (
       <Card
-        title={definition.slovo.concat(" = ", definition.cz_definice)}
+        title={[definition.slovo, definition.cz_definice]}
         text={[definition.preklad.concat(" = ", definition.en_definice)]}
+        isBubbleActive={true}
       />
     );
   } else {
-    definitionCard = <Card title={definition.slovo.concat(" = ", definition.cz_definice)} text={[definition.preklad]} />;
+    definitionCard = <Card title={[definition.slovo, definition.cz_definice]} text={[definition.preklad]} isBubbleActive={true} />;
   }
 
   if (definition.prikladove_vety_a2 && definition.prikladove_vety_a2 !== "-") {
-    exampleCards.push(<Card key={exampleCards.length} title={"A2"} text={[definition.prikladove_vety_a2]} />);
+    exampleCards.push(<Card key={exampleCards.length} title={["A2"]} text={[definition.prikladove_vety_a2]} />);
   }
 
   if (definition.prikladove_vety_b1 && definition.prikladove_vety_b1 !== "-") {
-    exampleCards.push(<Card key={exampleCards.length} title={"B1"} text={[definition.prikladove_vety_b1]} />);
+    exampleCards.push(<Card key={exampleCards.length} title={["B1"]} text={[definition.prikladove_vety_b1]} />);
   }
 
   if (definition.prikladove_vety_b2 && definition.prikladove_vety_b2 !== "-") {
-    exampleCards.push(<Card key={exampleCards.length} title={"B2"} text={[definition.prikladove_vety_b2]} />);
+    exampleCards.push(<Card key={exampleCards.length} title={["B2"]} text={[definition.prikladove_vety_b2]} />);
   }
 
   return (
@@ -52,7 +53,7 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
           <strong>Příkladové věty</strong>
         </h2>
       ) : (
-        <p></p>
+        <></>
       )}
       {exampleCards.map((card) => {
         return card;

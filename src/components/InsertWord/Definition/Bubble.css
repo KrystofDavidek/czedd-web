@@ -1,0 +1,15 @@
+.bubble__title {
+  font-size: 1rem;
+}
+
+.bubble__subtitle {
+  font-size: 1rem;
+}
+
+.bubble__text {
+  font-size: 1.2rem;
+}
+
+.bubble {
+  opacity: 0.95 !important;
+}

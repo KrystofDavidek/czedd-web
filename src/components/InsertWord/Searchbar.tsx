@@ -12,7 +12,7 @@ interface ISearchbarProps {
 }
 
 export const Searchbar: React.FC<ISearchbarProps> = ({ onSearch }) => {
-  const [input, setInput] = useState("učitel"); // vymazat inicializaci
+  const [input, setInput] = useState("ucitel"); // vymazat inicializaci
 
   useEffect(() => {
     const listener = (event: any) => {
