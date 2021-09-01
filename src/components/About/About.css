@@ -1,0 +1,13 @@
+.about {
+  margin: 2.5rem 10rem 0 10rem;
+}
+
+h1 {
+  margin: 2.5rem 0 2.5rem 0;
+}
+
+@media screen and (max-width: 44.9rem) {
+  .about {
+    margin: 2.5rem 2.5rem 0 2.5rem;
+  }
+}

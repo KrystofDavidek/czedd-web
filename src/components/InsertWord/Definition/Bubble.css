@@ -11,5 +11,7 @@
 }
 
 .bubble {
+  padding-top: 1rem !important;
   opacity: 0.95 !important;
+  border-radius: 1rem !important;
 }

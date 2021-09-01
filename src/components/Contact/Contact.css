@@ -1,7 +1,7 @@
 .contact-form {
   flex-direction: column;
   display: flex;
-  margin: 1rem;
+  margin: 2rem 1rem 1rem 1rem;
   align-items: center;
 }
 
