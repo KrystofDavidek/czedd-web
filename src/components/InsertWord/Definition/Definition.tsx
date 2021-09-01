@@ -16,7 +16,6 @@ interface IDefinitionProps {
 export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
   const exampleCards = [];
   let definitionCard;
-  console.log(definition);
 
   if (!definition.cz_definice) {
     definitionCard = <Card title={[definition.slovo]} text={[definition.preklad]} isBubbleActive={true} />;

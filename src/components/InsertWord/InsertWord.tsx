@@ -1,7 +1,7 @@
 import React from "react";
 import BEMHelper from "react-bem-helper";
 import "./InserWord.css";
-import data from "../../assets/data/zpracování_-tel_30.8.json";
+import data from "../../assets/data/zpracování_-tel.json";
 import { DefinitionData, defaultData } from "../../models/DefinitionData";
 import { Searchbar } from "./Searchbar";
 import { Definition } from "./Definition/Definition";
