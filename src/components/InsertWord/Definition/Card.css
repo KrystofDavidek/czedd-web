@@ -1,0 +1,12 @@
+.highlight {
+  color: var(--secondary-font-color);
+}
+
+.card {
+  align-items: center;
+  margin: 1rem;
+  padding: 1rem;
+  border: 0;
+  border-radius: 1rem;
+  background-color: var(--color-secondary-background);
+}

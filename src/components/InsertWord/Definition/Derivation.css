@@ -1,0 +1,10 @@
+.derivation {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0 0.5rem 0;
+}
+
+.derivation__text {
+  font-size: 1.3rem;
+  color: var(--secondary-font-color);
+}
