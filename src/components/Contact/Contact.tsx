@@ -17,7 +17,6 @@ interface IFormInput {
 }
 
 export const Contact = () => {
-  console.log();
   const { register, handleSubmit } = useForm<IFormInput>();
   const onSubmit: SubmitHandler<IFormInput> = (data: any, e: any) => {
     emailjs
@@ -30,7 +29,6 @@ export const Contact = () => {
       .then(
         (result) => {
           alert("Thank you, I'll be in touch.");
-          console.log(result.text);
           e.target.reset();
         },
         (error) => {
