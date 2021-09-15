@@ -12,7 +12,7 @@ interface ISearchbarProps {
 }
 
 export const Searchbar: React.FC<ISearchbarProps> = ({ onSearch }) => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState("ucitel");
 
   useEffect(() => {
     const listener = (event: any) => {
@@ -29,6 +29,7 @@ export const Searchbar: React.FC<ISearchbarProps> = ({ onSearch }) => {
   const search = () => {
     onSearch(input);
   };
+  search();
 
   return (
     <Form

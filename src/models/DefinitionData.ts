@@ -1,3 +1,7 @@
+export interface Data {
+  [key: string]: DefinitionData[];
+}
+
 export interface DefinitionData {
   id: number;
   slovo: string;
