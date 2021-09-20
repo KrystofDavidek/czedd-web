@@ -10,3 +10,27 @@ h1 {
 h2 {
   font-size: 1.5rem;
 }
+
+.definition__tag {
+  padding-left: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--secondary-font-color);
+}
+
+.definition__tags-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  right: 13rem;
+  top: 10rem;
+}
+
+@media screen and (max-width: 1400px) {
+  .definition__tags-container {
+    position: static;
+    margin: 1rem 1rem 2rem 1rem;
+  }
+}

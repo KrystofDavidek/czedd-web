@@ -14,6 +14,8 @@ interface IDefinitionProps {
 }
 
 export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
+  console.log(definition);
+
   const exampleCards = [];
   let definitionCard;
 
@@ -28,7 +30,9 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
       />
     );
   } else {
-    definitionCard = <Card title={[definition.slovo, definition.cz_definice]} text={[definition.preklad]} isBubbleActive={true} />;
+    definitionCard = (
+      <Card title={[definition.slovo, definition.cz_definice]} text={[definition.preklad]} isBubbleActive={true} />
+    );
   }
 
   if (definition.prikladove_vety_a2 && definition.prikladove_vety_a2 !== "-") {
@@ -45,6 +49,18 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
 
   return (
     <div {...classes()}>
+      <div {...classes("tags-container")}>
+        <div>
+          {definition.tag1 && <span {...classes("tag-title")}>A2</span>}
+          {definition.tag2 && <span {...classes("tag-title")}>, B1</span>}
+          {definition.tag3 && <span {...classes("tag-title")}>, B2</span>}
+        </div>
+        <div>
+          {definition.tag1 && <span {...classes("tag")}>#{definition.tag1}</span>}
+          {definition.tag2 && <span {...classes("tag")}>#{definition.tag2}</span>}
+          {definition.tag3 && <span {...classes("tag")}>#{definition.tag3}</span>}
+        </div>
+      </div>
       {definitionCard}
       <Derivation text={definition.popis_derivace} />
       {exampleCards.length > 0 ? (

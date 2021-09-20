@@ -1,7 +1,7 @@
 import React from "react";
 import BEMHelper from "react-bem-helper";
 import "./Card.css";
-import { toBoldAndUnderline, highlightAndToBold } from "../../../utils/stringUtils";
+import { toBoldAndUnderline, highlightAndToBold, toNewLines } from "../../../utils/stringUtils";
 import parse from "html-react-parser";
 import { Bubble } from "./Bubble";
 import { searchedDefinitionState } from "../../../store/atoms";
@@ -19,17 +19,11 @@ export interface ICardProps {
 
 export const Card: React.FC<ICardProps> = ({ title, text, isBubbleActive = false }) => {
   const [activeDefinition, setDefinition] = useRecoilState(searchedDefinitionState);
-  const word = (
-    <span data-tip data-for="word">
-      {parse(highlightAndToBold(title[0]))}
-    </span>
-  );
+  const word = <>{parse(toNewLines(highlightAndToBold(title[0], "word")))}</>;
   const definition = title[1] ? (
     <>
       <span> = </span>
-      <span data-tip data-for="definition">
-        {parse(highlightAndToBold(title[1]))}
-      </span>
+      {parse(toNewLines(highlightAndToBold(title[1], "definition")))}
     </>
   ) : (
     <></>
@@ -43,7 +37,7 @@ export const Card: React.FC<ICardProps> = ({ title, text, isBubbleActive = false
           {definition}
         </h1>
         {text.map((textPart, index) => (
-          <p key={index}>{parse(toBoldAndUnderline(textPart))}</p>
+          <p key={index}>{parse(toNewLines(toBoldAndUnderline(textPart)))}</p>
         ))}
         <Bubble
           id="word"
@@ -64,7 +58,7 @@ export const Card: React.FC<ICardProps> = ({ title, text, isBubbleActive = false
       <div {...classes()}>
         <h1>{parse(highlightAndToBold(title.toString()))}</h1>
         {text.map((textPart, index) => (
-          <p key={index}>{parse(toBoldAndUnderline(textPart))}</p>
+          <p key={index}>{parse(toNewLines(toBoldAndUnderline(textPart)))}</p>
         ))}
       </div>
     );

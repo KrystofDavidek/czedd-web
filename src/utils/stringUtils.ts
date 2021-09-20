@@ -26,6 +26,17 @@ export const toUnderline = (text: string) => {
   return text.replace(/\@([^@]+?)\@/g, "<u>$1</u>");
 };
 
-export const highlightAndToBold = (text: string) => {
+export const highlightAndToBold = (text: string, bubbleId: string = "") => {
+  if (bubbleId.length > 1) {
+    return text.replace(/\*([^*]+?)\*/g, `<strong><span data-tip data-for="${bubbleId}" class='highlight'>$1</span></strong>`);
+  }
   return text.replace(/\*([^*]+?)\*/g, "<strong><span class='highlight'>$1</span></strong>");
+};
+
+export const toNewLines = (text: string) => {
+  return text.replaceAll("#", "<br>");
+};
+
+export const toNewLinesAndSpaces = (text: string) => {
+  return toNewLines(text).replaceAll(" ", "&nbsp");
 };

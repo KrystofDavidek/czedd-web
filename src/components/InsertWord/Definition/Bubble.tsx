@@ -4,6 +4,7 @@ import "./Bubble.css";
 import ReactTooltip from "react-tooltip";
 import { Container, Row, Col } from "react-bootstrap";
 import parse from "html-react-parser";
+import { toNewLinesAndSpaces } from "../../../utils/stringUtils";
 
 const classes = new BEMHelper({
   name: "bubble",
@@ -24,7 +25,7 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, relatedWords }) => {
   const a2 = relatedWords.a2 ? (
     <Col>
       <h2 {...classes("subtitle")}>A2</h2>
-      <p {...classes("text")}>{parse(relatedWords.a2)}</p>
+      <p {...classes("text")}>{parse(toNewLinesAndSpaces(relatedWords.a2))}</p>
     </Col>
   ) : (
     <></>
@@ -32,7 +33,7 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, relatedWords }) => {
   const b1 = relatedWords.b1 ? (
     <Col>
       <h2 {...classes("subtitle")}>B1</h2>
-      <p {...classes("text")}>{parse(relatedWords.b1)}</p>
+      <p {...classes("text")}>{parse(toNewLinesAndSpaces(relatedWords.b1))}</p>
     </Col>
   ) : (
     <></>
@@ -40,7 +41,7 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, relatedWords }) => {
   const b2 = relatedWords.b2 ? (
     <Col>
       <h2 {...classes("subtitle")}>B2</h2>
-      <p {...classes("text")}>{parse(relatedWords.b2)}</p>
+      <p {...classes("text")}>{parse(toNewLinesAndSpaces(relatedWords.b2))}</p>
     </Col>
   ) : (
     <></>
