@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import BEMHelper from "react-bem-helper";
 import "./Bubble.css";
 import ReactTooltip from "react-tooltip";
@@ -10,20 +10,24 @@ const classes = new BEMHelper({
   name: "bubble",
 });
 
-interface IRealetedWords {
+interface IRelatedWords {
   a2: string | null;
   b1: string | null;
   b2: string | null;
 }
 
-export interface IBubbleProps {
+interface IBubbleProps {
   id: string;
-  relatedWords: IRealetedWords;
+  relatedWords: IRelatedWords;
 }
 
+// type TooltipRef = { tooltipRef: null } | null;
+
 export const Bubble: React.FC<IBubbleProps> = ({ id, relatedWords }) => {
+  const tooltip = useRef(null);
+
   const a2 = relatedWords.a2 ? (
-    <Col>
+    <Col {...classes("col")}>
       <h2 {...classes("subtitle")}>A2</h2>
       <p {...classes("text")}>{parse(toNewLinesAndSpaces(relatedWords.a2))}</p>
     </Col>
@@ -31,7 +35,7 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, relatedWords }) => {
     <></>
   );
   const b1 = relatedWords.b1 ? (
-    <Col>
+    <Col {...classes("col")}>
       <h2 {...classes("subtitle")}>B1</h2>
       <p {...classes("text")}>{parse(toNewLinesAndSpaces(relatedWords.b1))}</p>
     </Col>
@@ -39,7 +43,7 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, relatedWords }) => {
     <></>
   );
   const b2 = relatedWords.b2 ? (
-    <Col>
+    <Col {...classes("col")}>
       <h2 {...classes("subtitle")}>B2</h2>
       <p {...classes("text")}>{parse(toNewLinesAndSpaces(relatedWords.b2))}</p>
     </Col>
@@ -48,8 +52,30 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, relatedWords }) => {
   );
 
   return (
-    <ReactTooltip {...classes()} id={id} backgroundColor="var(--secondary-font-color)">
-      <Container>
+    <ReactTooltip
+      clickable
+      delayHide={100}
+      globalEventOff="click"
+      ref={tooltip}
+      {...classes()}
+      id={id}
+      backgroundColor="var(--secondary-font-color)"
+    >
+      <Container {...classes("container")}>
+        {/* <Row>
+          <Col>
+            <span
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                const current: TooltipRef = tooltip.current;
+                current!.tooltipRef = null;
+                ReactTooltip.hide();
+              }}
+            >
+              x
+            </span>
+          </Col>
+        </Row> */}
         <Row>
           <Col>
             <h1 {...classes("title")}>Related Words</h1>

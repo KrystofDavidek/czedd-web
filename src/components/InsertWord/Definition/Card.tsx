@@ -39,18 +39,22 @@ export const Card: React.FC<ICardProps> = ({ title, text, isBubbleActive = false
         {text.map((textPart, index) => (
           <p key={index}>{parse(toNewLines(toBoldAndUnderline(textPart)))}</p>
         ))}
-        <Bubble
-          id="word"
-          relatedWords={{
-            a2: activeDefinition.a2_substantivum,
-            b1: activeDefinition.b1_substantivum,
-            b2: activeDefinition.b2_substantivum,
-          }}
-        />
-        <Bubble
-          id="definition"
-          relatedWords={{ a2: activeDefinition.a2_verbum, b1: activeDefinition.b1_verbum, b2: activeDefinition.b2_verbum }}
-        />
+        {(activeDefinition.a2_substantivum || activeDefinition.b1_substantivum || activeDefinition.b2_substantivum) && (
+          <Bubble
+            id="word"
+            relatedWords={{
+              a2: activeDefinition.a2_substantivum,
+              b1: activeDefinition.b1_substantivum,
+              b2: activeDefinition.b2_substantivum,
+            }}
+          />
+        )}
+        {(activeDefinition.a2_verbum || activeDefinition.b1_verbum || activeDefinition.b2_verbum) && (
+          <Bubble
+            id="definition"
+            relatedWords={{ a2: activeDefinition.a2_verbum, b1: activeDefinition.b1_verbum, b2: activeDefinition.b2_verbum }}
+          />
+        )}
       </div>
     );
   } else

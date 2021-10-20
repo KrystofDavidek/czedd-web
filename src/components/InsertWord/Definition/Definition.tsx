@@ -14,25 +14,21 @@ interface IDefinitionProps {
 }
 
 export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
-  console.log(definition);
-
   const exampleCards = [];
   let definitionCard;
 
   if (!definition.cz_definice) {
-    definitionCard = <Card title={[definition.slovo]} text={[definition.preklad]} isBubbleActive={true} />;
+    definitionCard = <Card title={[definition.slovo]} text={[definition.preklad]} isBubbleActive />;
   } else if (definition.en_definice) {
     definitionCard = (
       <Card
         title={[definition.slovo, definition.cz_definice]}
         text={[definition.preklad.concat(" = ", definition.en_definice)]}
-        isBubbleActive={true}
+        isBubbleActive
       />
     );
   } else {
-    definitionCard = (
-      <Card title={[definition.slovo, definition.cz_definice]} text={[definition.preklad]} isBubbleActive={true} />
-    );
+    definitionCard = <Card title={[definition.slovo, definition.cz_definice]} text={[definition.preklad]} isBubbleActive />;
   }
 
   if (definition.prikladove_vety_a2 && definition.prikladove_vety_a2 !== "-") {
@@ -65,7 +61,7 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
       <Derivation text={definition.popis_derivace} />
       {exampleCards.length > 0 ? (
         <h2 {...classes("examples-sentences")}>
-          <strong>Příkladové věty</strong>
+          <strong>Example sentences</strong>
         </h2>
       ) : (
         <></>

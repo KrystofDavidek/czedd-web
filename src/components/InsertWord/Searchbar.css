@@ -6,6 +6,10 @@
   box-shadow: 0 0 0.25rem 0.05rem var(--secondary-font-color);
 }
 
+.searchbar__input {
+  width: 20rem;
+}
+
 .searchbar__button {
   background-color: var(--color-quaternary-background);
   border-color: var(--color-quaternary-background);

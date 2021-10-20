@@ -4,6 +4,7 @@ import { InsertWord } from "../InsertWord/InsertWord";
 import { ListOfWords } from "../ListOfWords/ListOfWords";
 import { Contact } from "../Contact/Contact";
 import { About } from "../About/About";
+import "./Page.css";
 
 const routes = [
   {
@@ -19,18 +20,20 @@ const routes = [
     component: ListOfWords,
   },
   {
-    path: "/insert",
+    path: "/insert/:word?",
     component: InsertWord,
   },
 ];
 
 export const Page = () => {
   return (
-    <Switch>
-      {routes.map((route, i) => (
-        <Route key={i} exact path={route.path} component={route.component} />
-      ))}
-      <Redirect to="/insert" />
-    </Switch>
+    <div className="page">
+      <Switch>
+        {routes.map((route, i) => (
+          <Route key={i} exact path={route.path} component={route.component} />
+        ))}
+        <Redirect to="/insert" />
+      </Switch>
+    </div>
   );
 };
