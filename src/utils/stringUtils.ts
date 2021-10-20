@@ -1,17 +1,18 @@
 export const compareStrings = (textA: string, textB: string): boolean => {
-  textA = textA
+  return normalize(textA) === normalize(textB);
+};
+
+export const normalize = (text: string): string => {
+  return text
     .normalize("NFD")
     .replace(/\p{Diacritic}/gu, "")
     .replaceAll("*", "")
     .trim()
     .toLowerCase();
-  textB = textB
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "")
-    .replaceAll("*", "")
-    .trim()
-    .toLowerCase();
-  return textA === textB;
+};
+
+export const removeFormat = (text: string) => {
+  return text.replaceAll("*", "");
 };
 
 export const toBoldAndUnderline = (text: string) => {

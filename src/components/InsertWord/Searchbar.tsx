@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import BEMHelper from "react-bem-helper";
 import "./Searchbar.css";
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
+import Select from "react-select";
+import { removeFormat } from "../../utils/stringUtils";
 
 const classes = new BEMHelper({
   name: "searchbar",
@@ -9,51 +11,50 @@ const classes = new BEMHelper({
 
 interface ISearchbarProps {
   onSearch: Function;
+  initialWord?: string;
+  words: string[];
 }
 
-export const Searchbar: React.FC<ISearchbarProps> = ({ onSearch }) => {
-  const [input, setInput] = useState("");
+type Option = { label: string; value: string };
 
-  useEffect(() => {
-    const listener = (event: any) => {
-      if (event.code === "Enter" || event.code === "NumpadEnter") {
-        search();
-      }
+export const Searchbar: React.FC<ISearchbarProps> = ({ onSearch, words, initialWord }) => {
+  const options: Option[] = words.map((word) => {
+    return {
+      value: removeFormat(word),
+      label: removeFormat(word),
     };
-    document.addEventListener("keydown", listener);
-    return () => {
-      document.removeEventListener("keydown", listener);
-    };
-  }, []);
+  });
+  const [selectedOption, setSelectedOption] = useState({ label: "", value: "" });
 
-  const search = () => {
-    onSearch(input);
+  const handleChange = (option: any) => {
+    if (option) {
+      setSelectedOption(option);
+    } else {
+      setSelectedOption({ label: "", value: "" });
+    }
   };
 
+  useEffect(() => {
+    if (initialWord) {
+      setSelectedOption({ label: initialWord, value: initialWord });
+    }
+  }, []);
+
+  useEffect(() => {
+    onSearch(selectedOption.value);
+  }, [selectedOption]);
+
   return (
-    <Form
-      {...classes()}
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-    >
+    <Form {...classes()}>
       <Row>
-        <Col xs="auto">
-          <Form.Label htmlFor="inlineFormInputWord" visuallyHidden>
-            Input
-          </Form.Label>
-          <Form.Control
-            {...classes("input")}
-            id="inlineFormInputWord"
+        <Col {...classes("input")}>
+          <Select
             placeholder="e. q. učitel"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
+            isClearable
+            value={selectedOption.value ? selectedOption : null}
+            onChange={(option) => handleChange(option)}
+            options={options}
           />
-        </Col>
-        <Col>
-          <Button {...classes("button")} type="submit" onClick={search}>
-            Search
-          </Button>
         </Col>
       </Row>
     </Form>

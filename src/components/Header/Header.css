@@ -21,10 +21,12 @@
 .header__title-highlight {
   color: var(--secondary-font-color);
   font-weight: 600;
+  margin-bottom: auto;
 }
 
 .header__subtitle {
-  font-size: 1.5rem;
+  font-style: italic;
+  font-size: 1rem;
 }
 
 .header__highlight {
