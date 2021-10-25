@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import BEMHelper from "react-bem-helper";
 import "./InserWord.css";
-import data1 from "../../assets/data/zpracování_-tel.json";
-import data2 from "../../assets/data/zpracování_-ík_-ník.json";
-
+import { data } from "../../utils/mapper";
 import { DefinitionData, defaultData, Data } from "../../models/DefinitionData";
 import { Searchbar } from "./Searchbar";
 import { Definition } from "./Definition/Definition";
@@ -15,8 +13,6 @@ import { useParams, useHistory } from "react-router-dom";
 const classes = new BEMHelper({
   name: "insert-page",
 });
-
-const data = { "-tel": data1, "-ík_-ník": data2 };
 
 const getData = (): DefinitionData[] => {
   let definitionData: DefinitionData[] = [];
@@ -31,7 +27,7 @@ export const InsertWord = () => {
   const [definition, setDefinition] = useRecoilState(searchedDefinitionState);
   const { word } = useParams<{ word: string }>();
   const { push } = useHistory();
-  const definitions: DefinitionData[] = getData();
+  const definitions: DefinitionData[] = useMemo(() => getData().filter((definition) => !!definition), []);
 
   useEffect(() => {
     if (word) {

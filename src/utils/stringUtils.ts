@@ -15,12 +15,16 @@ export const removeFormat = (text: string) => {
   return text.replaceAll("*", "");
 };
 
-export const toBoldAndUnderline = (text: string) => {
-  return toBold(toUnderline(text));
+export const format = (text: string) => {
+  return toItalic(toBold(toUnderline(text)));
 };
 
 export const toBold = (text: string) => {
   return text.replace(/\*([^*]+?)\*/g, "<strong>$1</strong>");
+};
+
+export const toItalic = (text: string) => {
+  return text.replace(/\$([^$]+?)\$/g, "<i>$1</i>");
 };
 
 export const toUnderline = (text: string) => {

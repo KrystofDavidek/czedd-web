@@ -17,9 +17,9 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
   const exampleCards = [];
   let definitionCard;
 
-  if (!definition.cz_definice) {
+  if (!definition.cz_definice && definition.preklad) {
     definitionCard = <Card title={[definition.slovo]} text={[definition.preklad]} isBubbleActive />;
-  } else if (definition.en_definice) {
+  } else if (definition.en_definice && definition.preklad) {
     definitionCard = (
       <Card
         title={[definition.slovo, definition.cz_definice]}
@@ -27,8 +27,10 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
         isBubbleActive
       />
     );
-  } else {
+  } else if (definition.preklad) {
     definitionCard = <Card title={[definition.slovo, definition.cz_definice]} text={[definition.preklad]} isBubbleActive />;
+  } else {
+    definitionCard = <Card title={[definition.slovo, definition.cz_definice]} text={[]} isBubbleActive />;
   }
 
   if (definition.prikladove_vety_a2 && definition.prikladove_vety_a2 !== "-") {

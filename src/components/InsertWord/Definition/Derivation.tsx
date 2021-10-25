@@ -1,7 +1,7 @@
 import React from "react";
 import BEMHelper from "react-bem-helper";
 import "./Derivation.css";
-import { toBoldAndUnderline } from "../../../utils/stringUtils";
+import { format } from "../../../utils/stringUtils";
 import parse from "html-react-parser";
 
 const classes = new BEMHelper({
@@ -15,7 +15,7 @@ export interface IDerivationProps {
 export const Derivation: React.FC<IDerivationProps> = ({ text }) => {
   return (
     <div {...classes()}>
-      <p {...classes("text")}>{parse(toBoldAndUnderline(text))}</p>
+      <p {...classes("text")}>{parse(format(text))}</p>
     </div>
   );
 };

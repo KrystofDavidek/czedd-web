@@ -11,7 +11,7 @@ export const Header = () => {
     <div {...classes()}>
       <div {...classes("title")}>
         <h1 {...classes("title-highlight")}>CZEDD</h1>
-        <p {...classes("subtitle")}>(Czech Electronic Derivation Dictionary)</p>
+        <p {...classes("subtitle")}>(Czech Electronic Derivational Dictionary)</p>
       </div>
     </div>
   );

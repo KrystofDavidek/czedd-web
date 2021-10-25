@@ -1,7 +1,7 @@
 import React from "react";
 import BEMHelper from "react-bem-helper";
 import "./Card.css";
-import { toBoldAndUnderline, highlightAndToBold, toNewLines } from "../../../utils/stringUtils";
+import { format, highlightAndToBold, toNewLines } from "../../../utils/stringUtils";
 import parse from "html-react-parser";
 import { Bubble } from "./Bubble";
 import { searchedDefinitionState } from "../../../store/atoms";
@@ -37,7 +37,7 @@ export const Card: React.FC<ICardProps> = ({ title, text, isBubbleActive = false
           {definition}
         </h1>
         {text.map((textPart, index) => (
-          <p key={index}>{parse(toNewLines(toBoldAndUnderline(textPart)))}</p>
+          <p key={index}>{parse(toNewLines(format(textPart)))}</p>
         ))}
         {(activeDefinition.a2_substantivum || activeDefinition.b1_substantivum || activeDefinition.b2_substantivum) && (
           <Bubble
@@ -62,7 +62,7 @@ export const Card: React.FC<ICardProps> = ({ title, text, isBubbleActive = false
       <div {...classes()}>
         <h1>{parse(highlightAndToBold(title.toString()))}</h1>
         {text.map((textPart, index) => (
-          <p key={index}>{parse(toNewLines(toBoldAndUnderline(textPart)))}</p>
+          <p key={index}>{parse(toNewLines(format(textPart)))}</p>
         ))}
       </div>
     );
