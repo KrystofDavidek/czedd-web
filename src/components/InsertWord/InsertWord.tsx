@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import BEMHelper from "react-bem-helper";
 import "./InserWord.css";
 import { data } from "../../utils/mapper";
+
 import { DefinitionData, defaultData, Data } from "../../models/DefinitionData";
 import { Searchbar } from "./Searchbar";
 import { Definition } from "./Definition/Definition";

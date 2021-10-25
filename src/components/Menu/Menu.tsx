@@ -18,17 +18,17 @@ export const Menu = () => {
       </Nav.Item>
       <Nav.Item {...classes("item")}>
         <NavLink activeClassName="is-active" to="/list">
-          List of Derived Words
+          List of derived words
         </NavLink>
       </Nav.Item>
       <Nav.Item {...classes("item")}>
         <NavLink activeClassName="is-active" to="/insert">
-          Insert Word
+          Insert word
         </NavLink>
       </Nav.Item>
       <Nav.Item {...classes("item")}>
         <NavLink activeClassName="is-active" to="/contact">
-          Contact Us
+          Contact us
         </NavLink>
       </Nav.Item>
     </Nav>

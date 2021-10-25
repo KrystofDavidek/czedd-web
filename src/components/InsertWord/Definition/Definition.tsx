@@ -2,6 +2,8 @@ import React from "react";
 import BEMHelper from "react-bem-helper";
 import { DefinitionData } from "../../../models/DefinitionData";
 import { Card } from "./Card";
+import { removeFormat, toNewLines, format } from "../../../utils/stringUtils";
+import parse from "html-react-parser";
 import { Derivation } from "./Derivation";
 import "./Definition.css";
 
@@ -14,7 +16,7 @@ interface IDefinitionProps {
 }
 
 export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
-  const exampleCards = [];
+  const examples = { A2: [], B1: [], B2: [] } as any;
   let definitionCard;
 
   if (!definition.cz_definice && definition.preklad) {
@@ -34,43 +36,67 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
   }
 
   if (definition.prikladove_vety_a2 && definition.prikladove_vety_a2 !== "-") {
-    exampleCards.push(<Card key={exampleCards.length} title={["A2"]} text={[definition.prikladove_vety_a2]} />);
+    examples.A2.push(<span key={examples.A2.length}>{parse(toNewLines(format(definition.prikladove_vety_a2)))}</span>);
   }
 
   if (definition.prikladove_vety_b1 && definition.prikladove_vety_b1 !== "-") {
-    exampleCards.push(<Card key={exampleCards.length} title={["B1"]} text={[definition.prikladove_vety_b1]} />);
+    examples.B1.push(<span key={examples.B1.length}>{parse(toNewLines(format(definition.prikladove_vety_b1)))}</span>);
   }
 
   if (definition.prikladove_vety_b2 && definition.prikladove_vety_b2 !== "-") {
-    exampleCards.push(<Card key={exampleCards.length} title={["B2"]} text={[definition.prikladove_vety_b2]} />);
+    examples.B2.push(<span key={examples.B2.length}>{parse(toNewLines(format(definition.prikladove_vety_b2)))}</span>);
   }
 
   return (
     <div {...classes()}>
-      <div {...classes("tags-container")}>
+      <div {...classes("part")}>
+        <span {...classes("description")}>found word</span>
+        <span {...classes("found-word")}>{removeFormat(definition.slovo)}</span>
+      </div>
+      {}
+      <div {...classes("part")}>
+        <span {...classes("description")}>definition</span>
+        {definitionCard}
+      </div>
+      <div {...classes("part")}>
+        <span {...classes("description")}>language level</span>
         <div>
           {definition.tag1 && <span {...classes("tag-title")}>A2</span>}
           {definition.tag2 && <span {...classes("tag-title")}>, B1</span>}
           {definition.tag3 && <span {...classes("tag-title")}>, B2</span>}
         </div>
+      </div>
+      <div {...classes("part")}>
+        <span {...classes("description")}>characteristic</span>
         <div>
           {definition.tag1 && <span {...classes("tag")}>#{definition.tag1}</span>}
           {definition.tag2 && <span {...classes("tag")}>#{definition.tag2}</span>}
           {definition.tag3 && <span {...classes("tag")}>#{definition.tag3}</span>}
         </div>
       </div>
-      {definitionCard}
-      <Derivation text={definition.popis_derivace} />
-      {exampleCards.length > 0 ? (
-        <h2 {...classes("examples-sentences")}>
-          <strong>Example sentences</strong>
-        </h2>
-      ) : (
-        <></>
+      {definition.popis_derivace && (
+        <div {...classes("part")}>
+          <span {...classes("description")}>formation</span>
+          <Derivation text={definition.popis_derivace} />
+        </div>
       )}
-      {exampleCards.map((card) => {
-        return card;
-      })}
+      <div {...classes("part")}>
+        <span {...classes("description")}>example sentences</span>
+        <div>
+          <div {...classes("example-level")}>
+            {examples.A2.length > 0 ? <div {...classes("example-level-title")}>A2:</div> : undefined}
+            <div>{examples.A2 && examples.A2}</div>
+          </div>
+          <div {...classes("example-level")}>
+            {examples.B1.length > 0 ? <div {...classes("example-level-title")}>B1:</div> : undefined}
+            <div>{examples.B1 && examples.B1}</div>
+          </div>
+          <div {...classes("example-level")}>
+            {examples.B2.length > 0 ? <div {...classes("example-level-title")}>B2:</div> : undefined}
+            <div>{examples.B2 && examples.B2}</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

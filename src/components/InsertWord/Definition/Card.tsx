@@ -32,10 +32,10 @@ export const Card: React.FC<ICardProps> = ({ title, text, isBubbleActive = false
   if (isBubbleActive) {
     return (
       <div {...classes()}>
-        <h1>
+        <span>
           {word}
           {definition}
-        </h1>
+        </span>
         {text.map((textPart, index) => (
           <p key={index}>{parse(toNewLines(format(textPart)))}</p>
         ))}
@@ -60,7 +60,7 @@ export const Card: React.FC<ICardProps> = ({ title, text, isBubbleActive = false
   } else
     return (
       <div {...classes()}>
-        <h1>{parse(highlightAndToBold(title.toString()))}</h1>
+        <span>{parse(highlightAndToBold(title.toString()))}</span>
         {text.map((textPart, index) => (
           <p key={index}>{parse(toNewLines(format(textPart)))}</p>
         ))}
