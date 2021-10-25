@@ -85,15 +85,15 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
         <div>
           <div {...classes("example-level")}>
             {examples.A2.length > 0 ? <div {...classes("example-level-title")}>A2:</div> : undefined}
-            <div>{examples.A2 && examples.A2}</div>
+            <p>{examples.A2 && examples.A2}</p>
           </div>
           <div {...classes("example-level")}>
             {examples.B1.length > 0 ? <div {...classes("example-level-title")}>B1:</div> : undefined}
-            <div>{examples.B1 && examples.B1}</div>
+            <p>{examples.B1 && examples.B1}</p>
           </div>
           <div {...classes("example-level")}>
             {examples.B2.length > 0 ? <div {...classes("example-level-title")}>B2:</div> : undefined}
-            <div>{examples.B2 && examples.B2}</div>
+            <p>{examples.B2 && examples.B2}</p>
           </div>
         </div>
       </div>
