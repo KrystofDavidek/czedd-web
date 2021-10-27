@@ -37,8 +37,10 @@ export const Searchbar: React.FC<ISearchbarProps> = ({ onSearch, words, initialW
   useEffect(() => {
     if (initialWord) {
       setSelectedOption({ label: initialWord, value: initialWord });
+    } else {
+      setSelectedOption({ label: "", value: "" });
     }
-  }, []);
+  }, [initialWord]);
 
   useEffect(() => {
     onSearch(selectedOption.value);

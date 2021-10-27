@@ -49,52 +49,42 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
 
   return (
     <div {...classes()}>
-      <div {...classes("part")}>
-        <span {...classes("description")}>found word</span>
-        <span {...classes("found-word")}>{removeFormat(definition.slovo)}</span>
+      <span {...classes("description")}>found word</span>
+      <span {...classes("found-word")}>{removeFormat(definition.slovo)}</span>
+
+      <span {...classes("description")}>definition</span>
+      {definitionCard}
+      <span {...classes("description")}>language level</span>
+      <div>
+        {definition.tag1 && <span {...classes("tag-title")}>A2</span>}
+        {definition.tag2 && <span {...classes("tag-title")}>, B1</span>}
+        {definition.tag3 && <span {...classes("tag-title")}>, B2</span>}
       </div>
-      {}
-      <div {...classes("part")}>
-        <span {...classes("description")}>definition</span>
-        {definitionCard}
-      </div>
-      <div {...classes("part")}>
-        <span {...classes("description")}>language level</span>
-        <div>
-          {definition.tag1 && <span {...classes("tag-title")}>A2</span>}
-          {definition.tag2 && <span {...classes("tag-title")}>, B1</span>}
-          {definition.tag3 && <span {...classes("tag-title")}>, B2</span>}
-        </div>
-      </div>
-      <div {...classes("part")}>
-        <span {...classes("description")}>characteristic</span>
-        <div>
-          {definition.tag1 && <span {...classes("tag")}>#{definition.tag1}</span>}
-          {definition.tag2 && <span {...classes("tag")}>#{definition.tag2}</span>}
-          {definition.tag3 && <span {...classes("tag")}>#{definition.tag3}</span>}
-        </div>
+      <span {...classes("description")}>characteristic</span>
+      <div>
+        {definition.tag1 && <span {...classes("tag")}>#{definition.tag1}</span>}
+        {definition.tag2 && <span {...classes("tag")}>#{definition.tag2}</span>}
+        {definition.tag3 && <span {...classes("tag")}>#{definition.tag3}</span>}
       </div>
       {definition.popis_derivace && (
-        <div {...classes("part")}>
+        <>
           <span {...classes("description")}>formation</span>
           <Derivation text={definition.popis_derivace} />
-        </div>
+        </>
       )}
-      <div {...classes("part")}>
-        <span {...classes("description")}>example sentences</span>
-        <div>
-          <div {...classes("example-level")}>
-            {examples.A2.length > 0 ? <div {...classes("example-level-title")}>A2:</div> : undefined}
-            <p>{examples.A2 && examples.A2}</p>
-          </div>
-          <div {...classes("example-level")}>
-            {examples.B1.length > 0 ? <div {...classes("example-level-title")}>B1:</div> : undefined}
-            <p>{examples.B1 && examples.B1}</p>
-          </div>
-          <div {...classes("example-level")}>
-            {examples.B2.length > 0 ? <div {...classes("example-level-title")}>B2:</div> : undefined}
-            <p>{examples.B2 && examples.B2}</p>
-          </div>
+      <span {...classes("description")}>example sentences</span>
+      <div>
+        <div {...classes("example-level")}>
+          {examples.A2.length > 0 ? <div {...classes("example-level-title")}>A2:</div> : undefined}
+          <p>{examples.A2 && examples.A2}</p>
+        </div>
+        <div {...classes("example-level")}>
+          {examples.B1.length > 0 ? <div {...classes("example-level-title")}>B1:</div> : undefined}
+          <p>{examples.B1 && examples.B1}</p>
+        </div>
+        <div {...classes("example-level")}>
+          {examples.B2.length > 0 ? <div {...classes("example-level-title")}>B2:</div> : undefined}
+          <p>{examples.B2 && examples.B2}</p>
         </div>
       </div>
     </div>

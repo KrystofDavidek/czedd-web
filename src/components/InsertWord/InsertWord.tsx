@@ -9,7 +9,7 @@ import { Definition } from "./Definition/Definition";
 import { compareStrings } from "../../utils/stringUtils";
 import { useRecoilState } from "recoil";
 import { searchedDefinitionState } from "../../store/atoms";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 
 const classes = new BEMHelper({
   name: "insert-page",
@@ -28,6 +28,7 @@ export const InsertWord = () => {
   const [definition, setDefinition] = useRecoilState(searchedDefinitionState);
   const { word } = useParams<{ word: string }>();
   const { push } = useHistory();
+  const location = useLocation();
   const definitions: DefinitionData[] = useMemo(() => getData().filter((definition) => !!definition), []);
 
   useEffect(() => {
@@ -37,6 +38,12 @@ export const InsertWord = () => {
       setDefinition(defaultData);
     }
   }, []);
+
+  useEffect(() => {
+    if (location.pathname === "/insert") {
+      setDefinition(defaultData);
+    }
+  }, [location]);
 
   const search = (input: string) => {
     const selectedDefinition = definitions.find((def: DefinitionData) => {

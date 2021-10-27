@@ -4,8 +4,11 @@
 }
 
 .definition {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;
+  justify-items: start;
+  align-items: baseline;
 }
 
 .definition__part {
@@ -15,6 +18,7 @@
 }
 
 .definition__description {
+  justify-self: end;
   margin-right: 2rem;
   font-style: italic;
   color: var(--quaternary-font-color);
@@ -26,7 +30,7 @@
 }
 
 .definition__tag {
-  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   font-size: 1.2rem;
 }
 
@@ -37,7 +41,7 @@
 
 .definition__example-level-title {
   font-weight: 600;
-  margin: 1rem;
+  margin: 0 1rem 0 0;
 }
 
 @media screen and (max-width: 1400px) {
