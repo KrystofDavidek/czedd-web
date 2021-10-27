@@ -13,22 +13,22 @@ export const Menu = () => {
     <Nav {...classes()} variant="pills">
       <Nav.Item {...classes("item")}>
         <NavLink activeClassName="is-active" to="/about">
-          About CZEDD
+          O CZEDDu
         </NavLink>
       </Nav.Item>
-      <Nav.Item {...classes("item")}>
+      {/* <Nav.Item {...classes("item")}>
         <NavLink activeClassName="is-active" to="/list">
-          List of Derived Words
+          List of derived words
         </NavLink>
-      </Nav.Item>
+      </Nav.Item> */}
       <Nav.Item {...classes("item")}>
         <NavLink activeClassName="is-active" to="/insert">
-          Insert Word
+          Napsat slovo
         </NavLink>
       </Nav.Item>
       <Nav.Item {...classes("item")}>
         <NavLink activeClassName="is-active" to="/contact">
-          Contact Us
+          Kontakt
         </NavLink>
       </Nav.Item>
     </Nav>

@@ -1,7 +1,7 @@
 import React from "react";
 import BEMHelper from "react-bem-helper";
 import "./Card.css";
-import { toBoldAndUnderline, highlightAndToBold, toNewLines } from "../../../utils/stringUtils";
+import { format, highlightAndFormat, toNewLines } from "../../../utils/stringUtils";
 import parse from "html-react-parser";
 import { Bubble } from "./Bubble";
 import { searchedDefinitionState } from "../../../store/atoms";
@@ -19,25 +19,24 @@ export interface ICardProps {
 
 export const Card: React.FC<ICardProps> = ({ title, text, isBubbleActive = false }) => {
   const [activeDefinition, setDefinition] = useRecoilState(searchedDefinitionState);
-  const word = <>{parse(toNewLines(highlightAndToBold(title[0], "word")))}</>;
+  const word = <>{parse(toNewLines(highlightAndFormat(title[0], "word")))}</>;
   const definition = title[1] ? (
     <>
       <span> = </span>
-      {parse(toNewLines(highlightAndToBold(title[1], "definition")))}
+      {parse(toNewLines(highlightAndFormat(title[1], "definition")))}
     </>
   ) : (
     <></>
   );
-
   if (isBubbleActive) {
     return (
       <div {...classes()}>
-        <h1>
+        <span>
           {word}
           {definition}
-        </h1>
+        </span>
         {text.map((textPart, index) => (
-          <p key={index}>{parse(toNewLines(toBoldAndUnderline(textPart)))}</p>
+          <p key={index}>{parse(toNewLines(format(textPart)))}</p>
         ))}
         {(activeDefinition.a2_substantivum || activeDefinition.b1_substantivum || activeDefinition.b2_substantivum) && (
           <Bubble
@@ -60,9 +59,9 @@ export const Card: React.FC<ICardProps> = ({ title, text, isBubbleActive = false
   } else
     return (
       <div {...classes()}>
-        <h1>{parse(highlightAndToBold(title.toString()))}</h1>
+        <span>{parse(highlightAndFormat(title.toString()))}</span>
         {text.map((textPart, index) => (
-          <p key={index}>{parse(toNewLines(toBoldAndUnderline(textPart)))}</p>
+          <p key={index}>{parse(toNewLines(format(textPart)))}</p>
         ))}
       </div>
     );
