@@ -1,0 +1,18 @@
+.desc-bubble {
+  padding-top: 1rem !important;
+  opacity: 0.95 !important;
+  border-radius: 1rem !important;
+}
+
+.desc-bubble__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.desc-bubble__text {
+  color: var(--primary-font-color);
+  font-weight: bold;
+  font-size: 1rem;
+}

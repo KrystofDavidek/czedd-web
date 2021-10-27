@@ -5,6 +5,7 @@ import { Card } from "./Card";
 import { removeFormat, toNewLines, format } from "../../../utils/stringUtils";
 import parse from "html-react-parser";
 import { Derivation } from "./Derivation";
+import { DescBubble } from "./DescBubble";
 import "./Definition.css";
 
 const classes = new BEMHelper({
@@ -49,18 +50,25 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
 
   return (
     <div {...classes()}>
-      <span {...classes("description")}>found word</span>
+      <span data-tip data-for="found-word" {...classes("description")}>
+        hledané slovo
+      </span>
       <span {...classes("found-word")}>{removeFormat(definition.slovo)}</span>
-
-      <span {...classes("description")}>definition</span>
+      <span data-tip data-for="desc-definition" {...classes("description")}>
+        definice
+      </span>
       {definitionCard}
-      <span {...classes("description")}>language level</span>
+      <span data-tip data-for="language-level" {...classes("description")}>
+        jazyková úroveň
+      </span>
       <div>
         {definition.tag1 && <span {...classes("tag-title")}>A2</span>}
         {definition.tag2 && <span {...classes("tag-title")}>, B1</span>}
         {definition.tag3 && <span {...classes("tag-title")}>, B2</span>}
       </div>
-      <span {...classes("description")}>characteristic</span>
+      <span data-tip data-for="characteristic" {...classes("description")}>
+        bližší popis
+      </span>
       <div>
         {definition.tag1 && <span {...classes("tag")}>#{definition.tag1}</span>}
         {definition.tag2 && <span {...classes("tag")}>#{definition.tag2}</span>}
@@ -68,24 +76,40 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
       </div>
       {definition.popis_derivace && (
         <>
-          <span {...classes("description")}>formation</span>
+          <span data-tip data-for="formation" {...classes("description")}>
+            utvořenost
+          </span>
           <Derivation text={definition.popis_derivace} />
         </>
       )}
-      <span {...classes("description")}>example sentences</span>
+      <span data-tip data-for="example-sentences" {...classes("description")}>
+        příkladové věty
+      </span>
       <div>
-        <div {...classes("example-level")}>
-          {examples.A2.length > 0 ? <div {...classes("example-level-title")}>A2:</div> : undefined}
-          <p>{examples.A2 && examples.A2}</p>
-        </div>
-        <div {...classes("example-level")}>
-          {examples.B1.length > 0 ? <div {...classes("example-level-title")}>B1:</div> : undefined}
-          <p>{examples.B1 && examples.B1}</p>
-        </div>
-        <div {...classes("example-level")}>
-          {examples.B2.length > 0 ? <div {...classes("example-level-title")}>B2:</div> : undefined}
-          <p>{examples.B2 && examples.B2}</p>
-        </div>
+        {examples.A2.length > 0 ? (
+          <div {...classes("example-level")}>
+            <div {...classes("example-level-title")}>A2:</div>
+            <p>{examples.A2}</p>
+          </div>
+        ) : undefined}
+        {examples.B1.length > 0 ? (
+          <div {...classes("example-level")}>
+            <div {...classes("example-level-title")}>B1:</div>
+            <p>{examples.B1}</p>
+          </div>
+        ) : undefined}
+        {examples.B2.length > 0 ? (
+          <div {...classes("example-level")}>
+            <div {...classes("example-level-title")}>B2:</div>
+            <p>{examples.B2}</p>
+          </div>
+        ) : undefined}
+        <DescBubble id="found-word" text="found word" />
+        <DescBubble id="desc-definition" text="definition" />
+        <DescBubble id="language-level" text="language level" />
+        <DescBubble id="characteristic" text="characteristic" />
+        <DescBubble id="formation" text="formation" />
+        <DescBubble id="example-sentences" text="example sentences" />
       </div>
     </div>
   );

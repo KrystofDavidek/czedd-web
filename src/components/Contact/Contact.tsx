@@ -28,7 +28,7 @@ export const Contact = () => {
       )
       .then(
         (result) => {
-          alert("Thank you, I'll be in touch.");
+          alert("Děkuji, ozveme se Vám.");
           e.target.reset();
         },
         (error) => {
@@ -41,28 +41,28 @@ export const Contact = () => {
     <Form {...classes()} onSubmit={handleSubmit(onSubmit)}>
       <div {...classes("items")}>
         <Form.Group className="mb-3" controlId="name">
-          <Form.Label>Name</Form.Label>
-          <Form.Control {...register("name")} type="text" placeholder="Henry Cook" />
+          <Form.Label>Jméno</Form.Label>
+          <Form.Control {...register("name")} type="text" placeholder="Tomáš Novák" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="email">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control {...register("email")} type="email" placeholder="henry.cook@gmail.com" />
+          <Form.Label>E-mail</Form.Label>
+          <Form.Control {...register("email")} type="email" placeholder="novak@gmail.com" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="subject">
-          <Form.Label>Subject</Form.Label>
-          <Form.Control {...register("subject")} type="text" placeholder="Linguistic problem" />
+          <Form.Label>Předmět</Form.Label>
+          <Form.Control {...register("subject")} type="text" placeholder="Lingvistický problém" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="message">
-          <Form.Label>Message</Form.Label>
+          <Form.Label>Zpráva</Form.Label>
           <Form.Control
             {...register("message")}
             as="textarea"
-            placeholder="Hello, I was looking at verbal prefixes..."
+            placeholder="Dobrý den, díval jsem se na verbální prefixy..."
             style={{ height: "100px" }}
           />
         </Form.Group>
         <Button {...classes("button")} variant="primary" type="submit">
-          Submit
+          Odeslat
         </Button>
       </div>
     </Form>

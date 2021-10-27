@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import BEMHelper from "react-bem-helper";
 import "./Bubble.css";
 import ReactTooltip from "react-tooltip";
@@ -78,7 +78,7 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, relatedWords }) => {
         </Row> */}
         <Row>
           <Col>
-            <h1 {...classes("title")}>Related Words</h1>
+            <h1 {...classes("title")}>Příbuzná slova</h1>
           </Col>
         </Row>
         <Row>
