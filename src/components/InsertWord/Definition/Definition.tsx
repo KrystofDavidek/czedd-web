@@ -58,22 +58,6 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
         definice
       </span>
       {definitionCard}
-      <span data-tip data-for="language-level" {...classes("description")}>
-        jazyková úroveň
-      </span>
-      <div>
-        {definition.tag1 && <span {...classes("tag-title")}>A2</span>}
-        {definition.tag2 && <span {...classes("tag-title")}>, B1</span>}
-        {definition.tag3 && <span {...classes("tag-title")}>, B2</span>}
-      </div>
-      <span data-tip data-for="characteristic" {...classes("description")}>
-        bližší popis
-      </span>
-      <div>
-        {definition.tag1 && <span {...classes("tag")}>#{definition.tag1}</span>}
-        {definition.tag2 && <span {...classes("tag")}>#{definition.tag2}</span>}
-        {definition.tag3 && <span {...classes("tag")}>#{definition.tag3}</span>}
-      </div>
       {definition.popis_derivace && (
         <>
           <span data-tip data-for="formation" {...classes("description")}>
@@ -82,6 +66,18 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
           <Derivation text={definition.popis_derivace} />
         </>
       )}
+      <span data-tip data-for="language-level" {...classes("description")}>
+        jazyková úroveň
+      </span>
+      <div>{definition.urovne && <span {...classes("tag-title")}>{definition.urovne}</span>}</div>
+      <span data-tip data-for="characteristic" {...classes("description")}>
+        bližší popis
+      </span>
+      <div>
+        {definition.tag1 && <span {...classes("tag")}>#{definition.tag1}</span>}
+        {definition.tag2 && <span {...classes("tag")}>#{definition.tag2}</span>}
+        {definition.tag3 && <span {...classes("tag")}>#{definition.tag3}</span>}
+      </div>
       <span data-tip data-for="example-sentences" {...classes("description")}>
         příkladové věty
       </span>

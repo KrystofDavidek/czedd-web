@@ -23,7 +23,7 @@ export const Menu = () => {
       </Nav.Item> */}
       <Nav.Item {...classes("item")}>
         <NavLink activeClassName="is-active" to="/insert">
-          Napsat slovo
+          Vyhledat slovo
         </NavLink>
       </Nav.Item>
       <Nav.Item {...classes("item")}>

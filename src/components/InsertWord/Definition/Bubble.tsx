@@ -4,7 +4,7 @@ import "./Bubble.css";
 import ReactTooltip from "react-tooltip";
 import { Container, Row, Col } from "react-bootstrap";
 import parse from "html-react-parser";
-import { toNewLinesAndSpaces } from "../../../utils/stringUtils";
+import { toNewLinesAndSpaces, format } from "../../../utils/stringUtils";
 
 const classes = new BEMHelper({
   name: "bubble",
@@ -18,34 +18,35 @@ interface IRelatedWords {
 
 interface IBubbleProps {
   id: string;
+  word?: string;
   relatedWords: IRelatedWords;
 }
 
 // type TooltipRef = { tooltipRef: null } | null;
 
-export const Bubble: React.FC<IBubbleProps> = ({ id, relatedWords }) => {
+export const Bubble: React.FC<IBubbleProps> = ({ id, word, relatedWords }) => {
   const tooltip = useRef(null);
 
   const a2 = relatedWords.a2 ? (
     <Col {...classes("col")}>
-      <h2 {...classes("subtitle")}>A2</h2>
-      <p {...classes("text")}>{parse(toNewLinesAndSpaces(relatedWords.a2))}</p>
+      <h2 {...classes("title")}>A2</h2>
+      <p {...classes("text")}>{parse(format(toNewLinesAndSpaces(relatedWords.a2)))}</p>
     </Col>
   ) : (
     <></>
   );
   const b1 = relatedWords.b1 ? (
     <Col {...classes("col")}>
-      <h2 {...classes("subtitle")}>B1</h2>
-      <p {...classes("text")}>{parse(toNewLinesAndSpaces(relatedWords.b1))}</p>
+      <h2 {...classes("title")}>B1</h2>
+      <p {...classes("text")}>{parse(format(toNewLinesAndSpaces(relatedWords.b1)))}</p>
     </Col>
   ) : (
     <></>
   );
   const b2 = relatedWords.b2 ? (
     <Col {...classes("col")}>
-      <h2 {...classes("subtitle")}>B2</h2>
-      <p {...classes("text")}>{parse(toNewLinesAndSpaces(relatedWords.b2))}</p>
+      <h2 {...classes("title")}>B2</h2>
+      <p {...classes("text")}>{parse(format(toNewLinesAndSpaces(relatedWords.b2)))}</p>
     </Col>
   ) : (
     <></>
@@ -62,23 +63,9 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, relatedWords }) => {
       backgroundColor="var(--secondary-font-color)"
     >
       <Container {...classes("container")}>
-        {/* <Row>
-          <Col>
-            <span
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                const current: TooltipRef = tooltip.current;
-                current!.tooltipRef = null;
-                ReactTooltip.hide();
-              }}
-            >
-              x
-            </span>
-          </Col>
-        </Row> */}
         <Row>
           <Col>
-            <h1 {...classes("title")}>Příbuzná slova</h1>
+            <h1 {...classes("title")}>příbuzná slova</h1>
           </Col>
         </Row>
         <Row>

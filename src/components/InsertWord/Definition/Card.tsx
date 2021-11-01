@@ -36,7 +36,9 @@ export const Card: React.FC<ICardProps> = ({ title, text, isBubbleActive = false
           {definition}
         </span>
         {text.map((textPart, index) => (
-          <p key={index}>{parse(toNewLines(format(textPart)))}</p>
+          <p {...classes("translation")} key={index}>
+            {parse(toNewLines(format(textPart)))}
+          </p>
         ))}
         {(activeDefinition.a2_substantivum || activeDefinition.b1_substantivum || activeDefinition.b2_substantivum) && (
           <Bubble

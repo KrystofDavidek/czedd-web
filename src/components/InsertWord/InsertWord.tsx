@@ -18,7 +18,7 @@ const classes = new BEMHelper({
 const getData = (): DefinitionData[] => {
   let definitionData: DefinitionData[] = [];
   Object.entries(data).forEach(([key, value]) => {
-    const dataArray = value as Data;
+    const dataArray = value as unknown as Data;
     definitionData = definitionData.concat(dataArray[key]);
   });
   return definitionData;
@@ -30,6 +30,8 @@ export const InsertWord = () => {
   const { push } = useHistory();
   const location = useLocation();
   const definitions: DefinitionData[] = useMemo(() => getData().filter((definition) => !!definition), []);
+
+  console.log(definition);
 
   useEffect(() => {
     if (word) {

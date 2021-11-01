@@ -21,9 +21,11 @@ export const Derivation: React.FC<IDerivationProps> = ({ text }) => {
 
   return (
     <div {...classes()}>
-      {derivation[0] && <span {...classes("text")}> {parse(highlightAndFormat(derivation[0]))}</span>}
-      {derivation[1] && <span {...classes("process")}> {parse(highlightAndFormat(derivation[1]))}</span>}
-      {derivation[2] && <span {...classes("text")}> {parse(highlightAndFormat(derivation[2]))}</span>}
+      <div {...classes("main")}>
+        {derivation[0] && <span {...classes("text")}> {parse(highlightAndFormat(derivation[0]))}</span>}
+        {derivation[1] && <span {...classes("process")}> {parse(highlightAndFormat(derivation[1]))}</span>}
+      </div>
+      {derivation[2] && <span {...classes("text-warning")}> {parse(highlightAndFormat(derivation[2]))}</span>}
     </div>
   );
 };

@@ -3,9 +3,13 @@
 }
 
 .card {
-  align-items: center;
   padding: 1rem;
   border: 0;
   border-radius: 1rem;
   background-color: var(--color-secondary-background);
+}
+
+.card__translation {
+  font-size: 1rem;
+  color: var(--quinary-font-color);
 }
