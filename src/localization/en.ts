@@ -1,0 +1,22 @@
+/* eslint-disable import/no-anonymous-default-export */
+export default {
+  about: "About CZEDD",
+  search: "Search for a word",
+  contact: "Contact",
+  title: "Czech electronic derivational dictionary",
+  example: "e.q. učitel",
+  name: "Name",
+  subject: "Subject",
+  subject_example: "Linguistic problem",
+  message: "Message",
+  message_example: "Hello, I was looking at verbal prefixes...",
+  send: "Send",
+  thanks: "Thank you, we'll be in touch.",
+  example_words: "example words",
+  found_word: "found word",
+  formation: "formation",
+  desc_definition: "definition",
+  language_level: "language level",
+  characteristic: "characteristic",
+  example_sentences: "example sentences",
+};

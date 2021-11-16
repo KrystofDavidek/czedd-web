@@ -4,6 +4,7 @@ import "./Searchbar.css";
 import { Form, Row, Col } from "react-bootstrap";
 import Select from "react-select";
 import { removeFormat } from "../../utils/stringUtils";
+import { useTranslation } from "../../utils/useTranslation";
 
 const classes = new BEMHelper({
   name: "searchbar",
@@ -18,6 +19,7 @@ interface ISearchbarProps {
 type Option = { label: string; value: string };
 
 export const Searchbar: React.FC<ISearchbarProps> = ({ onSearch, words, initialWord }) => {
+  const t = useTranslation();
   const options: Option[] = words.map((word) => {
     return {
       value: removeFormat(word),
@@ -51,7 +53,7 @@ export const Searchbar: React.FC<ISearchbarProps> = ({ onSearch, words, initialW
       <Row>
         <Col {...classes("input")}>
           <Select
-            placeholder="e. q. učitel"
+            placeholder={t("example")}
             isClearable
             value={selectedOption.value ? selectedOption : null}
             onChange={(option) => handleChange(option)}

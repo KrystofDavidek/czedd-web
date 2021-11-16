@@ -5,6 +5,7 @@ import ReactTooltip from "react-tooltip";
 import { Container, Row, Col } from "react-bootstrap";
 import parse from "html-react-parser";
 import { toNewLinesAndSpaces, format } from "../../../utils/stringUtils";
+import { useTranslation } from "../../../utils/useTranslation";
 
 const classes = new BEMHelper({
   name: "bubble",
@@ -25,6 +26,7 @@ interface IBubbleProps {
 // type TooltipRef = { tooltipRef: null } | null;
 
 export const Bubble: React.FC<IBubbleProps> = ({ id, word, relatedWords }) => {
+  const t = useTranslation();
   const tooltip = useRef(null);
 
   const a2 = relatedWords.a2 ? (
@@ -65,7 +67,7 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, word, relatedWords }) => {
       <Container {...classes("container")}>
         <Row>
           <Col>
-            <h1 {...classes("title")}>příbuzná slova</h1>
+            <h1 {...classes("title")}>{t("example_words")}</h1>
           </Col>
         </Row>
         <Row>

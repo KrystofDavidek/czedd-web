@@ -5,15 +5,15 @@ export interface Data {
 export interface DefinitionData {
   id: number;
   slovo: string;
-  hledane_slovo: string;
-  hledane_slovo_EN: string | null;
   preklad: string;
+  hledane_slovo: string;
+  hledane_slovo_EN: string;
   urovne: string;
   a2_substantivum: string | null;
   b1_substantivum: string | null;
   b2_substantivum: string | null;
   popis_derivace: string;
-  popis_derivace_EN: string | null;
+  popis_derivace_EN: string;
   a2_verbum: string | null;
   b1_verbum: string | null;
   b2_verbum: string | null;
@@ -34,14 +34,14 @@ export const defaultData: DefinitionData = {
   id: -1,
   slovo: "default",
   hledane_slovo: "default",
-  hledane_slovo_EN: null,
+  hledane_slovo_EN: "default",
   preklad: "default",
   urovne: "default",
   a2_substantivum: null,
   b1_substantivum: null,
   b2_substantivum: null,
   popis_derivace: "default",
-  popis_derivace_EN: null,
+  popis_derivace_EN: "default",
   a2_verbum: null,
   b1_verbum: null,
   b2_verbum: null,

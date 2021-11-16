@@ -28,7 +28,29 @@ a:hover {
   color: var(--tertiary-font-color);
 }
 
+.menu__lang-button {
+  color: var(--tertiary-font-color);
+  cursor: pointer;
+}
+
+.menu__navs {
+  display: flex;
+  flex: 1;
+  margin: 0 4rem 0 4rem;
+  justify-content: center;
+  transform: translateX(3rem);
+}
+
+.menu__language-switcher {
+  display: flex;
+  margin-right: 2rem;
+}
+
 .is-active {
   border-bottom: 2px solid var(--secondary-font-color);
   padding-bottom: 0.1rem;
+}
+
+.lang-is-active {
+  background-color: var(--secondary-font-color);
 }

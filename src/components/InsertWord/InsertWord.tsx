@@ -10,6 +10,7 @@ import { compareStrings } from "../../utils/stringUtils";
 import { useRecoilState } from "recoil";
 import { searchedDefinitionState } from "../../store/atoms";
 import { useParams, useHistory, useLocation } from "react-router-dom";
+import { useLanguage } from "../../utils/useTranslation";
 
 const classes = new BEMHelper({
   name: "insert-page",
@@ -25,13 +26,12 @@ const getData = (): DefinitionData[] => {
 };
 
 export const InsertWord = () => {
+  const [language, setLanguage] = useLanguage();
   const [definition, setDefinition] = useRecoilState(searchedDefinitionState);
   const { word } = useParams<{ word: string }>();
   const { push } = useHistory();
   const location = useLocation();
   const definitions: DefinitionData[] = useMemo(() => getData().filter((definition) => !!definition), []);
-
-  console.log(definition);
 
   useEffect(() => {
     if (word) {
@@ -49,7 +49,7 @@ export const InsertWord = () => {
 
   const search = (input: string) => {
     const selectedDefinition = definitions.find((def: DefinitionData) => {
-      return compareStrings(def.slovo, input);
+      return compareStrings(language === "en" ? def.hledane_slovo_EN : def.hledane_slovo, input);
     });
     if (selectedDefinition) {
       setDefinition(selectedDefinition);
@@ -65,7 +65,7 @@ export const InsertWord = () => {
       <Searchbar
         initialWord={word ? word : undefined}
         onSearch={search}
-        words={definitions.map((definition) => definition.slovo)}
+        words={definitions.map((definition) => (language === "en" ? definition.hledane_slovo_EN : definition.hledane_slovo))}
       />
       {(definition.id !== -1 || definition === undefined) && <Definition definition={definition} />}
     </div>

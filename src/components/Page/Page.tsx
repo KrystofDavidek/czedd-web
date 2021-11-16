@@ -27,13 +27,13 @@ const routes = [
 
 export const Page = () => {
   return (
-    <div className="page">
+    <main className="page">
       <Switch>
         {routes.map((route, i) => (
           <Route key={i} exact path={route.path} component={route.component} />
         ))}
         <Redirect to="/insert" />
       </Switch>
-    </div>
+    </main>
   );
 };
