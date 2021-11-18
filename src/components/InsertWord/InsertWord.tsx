@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import BEMHelper from "react-bem-helper";
 import "./InserWord.css";
 import { data } from "../../utils/mapper";
@@ -8,7 +8,7 @@ import { Searchbar } from "./Searchbar";
 import { Definition } from "./Definition/Definition";
 import { compareStrings } from "../../utils/stringUtils";
 import { useRecoilState } from "recoil";
-import { searchedDefinitionState } from "../../store/atoms";
+import { definitionsState, searchedDefinitionState } from "../../store/atoms";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import { useLanguage } from "../../utils/useTranslation";
 
@@ -28,10 +28,14 @@ const getData = (): DefinitionData[] => {
 export const InsertWord = () => {
   const [language, setLanguage] = useLanguage();
   const [definition, setDefinition] = useRecoilState(searchedDefinitionState);
+  const [definitions, setDefinitions] = useRecoilState(definitionsState);
   const { word } = useParams<{ word: string }>();
   const { push } = useHistory();
   const location = useLocation();
-  const definitions: DefinitionData[] = useMemo(() => getData().filter((definition) => !!definition), []);
+
+  useEffect(() => {
+    setDefinitions(getData().filter((definition) => !!definition));
+  }, []);
 
   useEffect(() => {
     if (word) {
@@ -39,7 +43,7 @@ export const InsertWord = () => {
     } else {
       setDefinition(defaultData);
     }
-  }, []);
+  }, [definitions]);
 
   useEffect(() => {
     if (location.pathname === "/insert") {

@@ -13,7 +13,7 @@ export interface IDerivationProps {
 }
 
 export const Derivation: React.FC<IDerivationProps> = ({ text }) => {
-  const derivation: string[] = text.split(",").map((row) => row.trim());
+  const derivation: string[] = text.split("#").map((row) => row.trim());
 
   if (derivation.length === 3) {
     derivation[2] = format(derivation[2]);

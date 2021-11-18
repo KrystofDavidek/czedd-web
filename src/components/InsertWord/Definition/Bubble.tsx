@@ -4,8 +4,11 @@ import "./Bubble.css";
 import ReactTooltip from "react-tooltip";
 import { Container, Row, Col } from "react-bootstrap";
 import parse from "html-react-parser";
-import { toNewLinesAndSpaces, format } from "../../../utils/stringUtils";
+import { toNewLinesAndSpaces, format, removeFormat, compareStrings } from "../../../utils/stringUtils";
 import { useTranslation } from "../../../utils/useTranslation";
+import { useRecoilState } from "recoil";
+import { definitionsState, searchedDefinitionState } from "../../../store/atoms";
+import { useHistory } from "react-router-dom";
 
 const classes = new BEMHelper({
   name: "bubble",
@@ -23,16 +26,47 @@ interface IBubbleProps {
   relatedWords: IRelatedWords;
 }
 
-// type TooltipRef = { tooltipRef: null } | null;
-
 export const Bubble: React.FC<IBubbleProps> = ({ id, word, relatedWords }) => {
+  const [definition, setDefinition] = useRecoilState(searchedDefinitionState);
+  const { push } = useHistory();
+  const [definitions, setDefinitions] = useRecoilState(definitionsState);
+
   const t = useTranslation();
   const tooltip = useRef(null);
+
+  const findWord = (w: string) => {
+    return definitions.find((def) => {
+      return compareStrings(def.slovo, removeFormat(w));
+    });
+  };
+
+  const getMappedRelatedWords = (words: string) => {
+    return words
+      .replaceAll("#", "^#")
+      .split("^")
+      .map((w) => {
+        const def = findWord(w);
+        return def ? (
+          <span
+            key={def.slovo}
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              setDefinition(def);
+              push(`/insert/${removeFormat(w)}`);
+            }}
+          >
+            {parse(format(toNewLinesAndSpaces(w)))}
+          </span>
+        ) : (
+          parse(format(toNewLinesAndSpaces(w)))
+        );
+      });
+  };
 
   const a2 = relatedWords.a2 ? (
     <Col {...classes("col")}>
       <h2 {...classes("title")}>A2</h2>
-      <p {...classes("text")}>{parse(format(toNewLinesAndSpaces(relatedWords.a2)))}</p>
+      <p {...classes("text")}>{getMappedRelatedWords(relatedWords.a2)}</p>
     </Col>
   ) : (
     <></>
@@ -40,7 +74,7 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, word, relatedWords }) => {
   const b1 = relatedWords.b1 ? (
     <Col {...classes("col")}>
       <h2 {...classes("title")}>B1</h2>
-      <p {...classes("text")}>{parse(format(toNewLinesAndSpaces(relatedWords.b1)))}</p>
+      <p {...classes("text")}>{getMappedRelatedWords(relatedWords.b1)}</p>
     </Col>
   ) : (
     <></>
@@ -48,7 +82,7 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, word, relatedWords }) => {
   const b2 = relatedWords.b2 ? (
     <Col {...classes("col")}>
       <h2 {...classes("title")}>B2</h2>
-      <p {...classes("text")}>{parse(format(toNewLinesAndSpaces(relatedWords.b2)))}</p>
+      <p {...classes("text")}>{getMappedRelatedWords(relatedWords.b2)}</p>
     </Col>
   ) : (
     <></>

@@ -37,6 +37,10 @@
   align-items: baseline;
 }
 
+.definition__example-levels {
+  max-width: 37.5rem;
+}
+
 .definition__example-level-title {
   font-weight: 600;
   margin: 0 1rem 0 0;

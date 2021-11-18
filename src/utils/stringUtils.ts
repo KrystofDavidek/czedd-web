@@ -12,7 +12,7 @@ export const normalize = (text: string): string => {
 };
 
 export const removeFormat = (text: string) => {
-  return text.replaceAll("*", "");
+  return text.replaceAll("*", "").replaceAll("$", "").replaceAll("@", "").replaceAll("#", "");
 };
 
 export const format = (text: string) => {

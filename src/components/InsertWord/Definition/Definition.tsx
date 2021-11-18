@@ -59,6 +59,7 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
         {t("found_word")}
       </span>
       <span {...classes("found-word")}>{removeFormat(definition.slovo)}</span>
+
       <span data-tip data-for="desc-definition" {...classes("description")}>
         {t("desc_definition")}
       </span>
@@ -73,6 +74,7 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
         {t("language_level")}
       </span>
       <div>{definition.urovne && <span {...classes("tag-title")}>{definition.urovne}</span>}</div>
+
       <span data-tip data-for="characteristic" {...classes("description")}>
         {t("characteristic")}
       </span>
@@ -93,7 +95,7 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
       <span data-tip data-for="example-sentences" {...classes("description")}>
         {t("example_sentences")}
       </span>
-      <div>
+      <div {...classes("example-levels")}>
         {examples.A2.length > 0 ? (
           <div {...classes("example-level")}>
             <div {...classes("example-level-title")}>A2:</div>

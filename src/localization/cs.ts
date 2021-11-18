@@ -13,7 +13,7 @@ export default {
   send: "Odeslat",
   thanks: "Děkuji, ozveme se Vám.",
   example_words: "příbuzná slova",
-  found_word: "hledané slovo",
+  found_word: "vyhledané slovo",
   desc_definition: "definice",
   formation: "utvořenost",
   language_level: "jazyková úroveň",

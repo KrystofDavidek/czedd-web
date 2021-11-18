@@ -5,3 +5,8 @@ export const searchedDefinitionState = atom<DefinitionData>({
   key: "searchedDefinition",
   default: defaultData,
 });
+
+export const definitionsState = atom<DefinitionData[]>({
+  key: "definitions",
+  default: [],
+});
