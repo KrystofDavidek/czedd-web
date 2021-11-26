@@ -1,0 +1,22 @@
+.genus-bubble {
+  opacity: 0.95 !important;
+  border-radius: 1rem !important;
+}
+
+.genus-bubble__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.genus-bubble__symbol {
+  color: var(--primary-font-color);
+  font-size: 1.5rem;
+}
+
+.genus-bubble__text {
+  color: var(--primary-font-color);
+  font-size: 1.2rem;
+}

@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import BEMHelper from "react-bem-helper";
 import "./InserWord.css";
-import { data } from "../../utils/mapper";
 
-import { DefinitionData, defaultData, Data } from "../../models/DefinitionData";
+import { DefinitionData, defaultData } from "../../models/DefinitionData";
 import { Searchbar } from "./Searchbar";
 import { Definition } from "./Definition/Definition";
 import { compareStrings } from "../../utils/stringUtils";
@@ -11,19 +10,11 @@ import { useRecoilState } from "recoil";
 import { definitionsState, searchedDefinitionState } from "../../store/atoms";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import { useLanguage } from "../../utils/useTranslation";
+import { getData } from "../../utils/getData";
 
 const classes = new BEMHelper({
   name: "insert-page",
 });
-
-const getData = (): DefinitionData[] => {
-  let definitionData: DefinitionData[] = [];
-  Object.entries(data).forEach(([key, value]) => {
-    const dataArray = value as unknown as Data;
-    definitionData = definitionData.concat(dataArray[key]);
-  });
-  return definitionData;
-};
 
 export const InsertWord = () => {
   const [language, setLanguage] = useLanguage();

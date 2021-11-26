@@ -5,9 +5,10 @@ import { Card } from "./Card";
 import { removeFormat, toNewLines, format } from "../../../utils/stringUtils";
 import parse from "html-react-parser";
 import { Derivation } from "./Derivation";
-// import { DescBubble } from "./DescBubble";
 import "./Definition.css";
 import { useLanguage, useTranslation } from "../../../utils/useTranslation";
+import { GenusBubble } from "./GenusBubble";
+import useGenus, { getGenusColor } from "../../../utils/useGenus";
 
 const classes = new BEMHelper({
   name: "definition",
@@ -20,6 +21,7 @@ interface IDefinitionProps {
 export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
   const [language, setLanguage] = useLanguage();
   const t = useTranslation();
+  const genus = useGenus(definition.genre);
   const examples = { A2: [], B1: [], B2: [] } as any;
   let definitionCard;
 
@@ -55,10 +57,10 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
 
   return (
     <div {...classes()}>
-      <span data-tip data-for="found-word" {...classes("description")}>
-        {t("found_word")}
+      <span {...classes("description")}>{t("found_word")}</span>
+      <span data-tip data-for="found-word" style={getGenusColor(genus)} {...classes("found-word")}>
+        {removeFormat(definition.slovo)}
       </span>
-      <span {...classes("found-word")}>{removeFormat(definition.slovo)}</span>
 
       <span data-tip data-for="desc-definition" {...classes("description")}>
         {t("desc_definition")}
@@ -83,12 +85,14 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
           {definition.tag1_EN && <span {...classes("tag")}>#{definition.tag1_EN}</span>}
           {definition.tag2_EN && <span {...classes("tag")}>#{definition.tag2_EN}</span>}
           {definition.tag3_EN && <span {...classes("tag")}>#{definition.tag3_EN}</span>}
+          {definition.tag4_EN && <span {...classes("tag")}>#{definition.tag4_EN}</span>}
         </div>
       ) : (
         <div>
           {definition.tag1 && <span {...classes("tag")}>#{definition.tag1}</span>}
           {definition.tag2 && <span {...classes("tag")}>#{definition.tag2}</span>}
           {definition.tag3 && <span {...classes("tag")}>#{definition.tag3}</span>}
+          {definition.tag4 && <span {...classes("tag")}>#{definition.tag4}</span>}
         </div>
       )}
 
@@ -114,12 +118,7 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
             <p>{examples.B2}</p>
           </div>
         ) : undefined}
-        {/* <DescBubble id="found-word" text="found word" />
-        <DescBubble id="desc-definition" text="definition" />
-        <DescBubble id="language-level" text="language level" />
-        <DescBubble id="characteristic" text="characteristic" />
-        <DescBubble id="formation" text="formation" />
-        <DescBubble id="example-sentences" text="example sentences" /> */}
+        <GenusBubble id="found-word" text={language === "en" ? definition.genre : definition.rod} genus={genus} />
       </div>
     </div>
   );

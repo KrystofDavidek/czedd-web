@@ -7,7 +7,9 @@ export interface DefinitionData {
   slovo: string;
   preklad: string;
   hledane_slovo: string;
+  rod: string;
   hledane_slovo_EN: string;
+  genre: string;
   urovne: string;
   a2_substantivum: string | null;
   b1_substantivum: string | null;
@@ -25,6 +27,8 @@ export interface DefinitionData {
   tag2_EN: string | null;
   tag3: string | null;
   tag3_EN: string | null;
+  tag4: string | null;
+  tag4_EN: string | null;
   prikladove_vety_a2: string | null;
   prikladove_vety_b1: string | null;
   prikladove_vety_b2: string | null;
@@ -34,7 +38,9 @@ export const defaultData: DefinitionData = {
   id: -1,
   slovo: "default",
   hledane_slovo: "default",
+  rod: "default",
   hledane_slovo_EN: "default",
+  genre: "default",
   preklad: "default",
   urovne: "default",
   a2_substantivum: null,
@@ -53,6 +59,8 @@ export const defaultData: DefinitionData = {
   tag2_EN: null,
   tag3: null,
   tag3_EN: null,
+  tag4: null,
+  tag4_EN: null,
   prikladove_vety_a2: null,
   prikladove_vety_b1: null,
   prikladove_vety_b2: null,

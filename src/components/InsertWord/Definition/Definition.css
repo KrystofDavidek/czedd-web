@@ -26,6 +26,7 @@
 }
 
 .definition__found-word {
+  font-weight: 600;
 }
 
 .definition__tag {
