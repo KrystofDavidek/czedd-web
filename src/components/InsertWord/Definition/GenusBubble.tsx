@@ -18,7 +18,10 @@ interface IGenusBubbleProps {
 }
 
 export const GenusBubble: React.FC<IGenusBubbleProps> = ({ id, text, genus }) => {
-  const [, sentence] = text.replaceAll("#", "").split(/(?<=^\S+)\s/);
+  console.log(text);
+
+  const [, ...secondPart] = text.replaceAll("#", "").split(" ");
+  const sentence = secondPart.join(" ");
 
   return (
     <ReactTooltip {...classes()} id={id} backgroundColor="#CFE2F3">
