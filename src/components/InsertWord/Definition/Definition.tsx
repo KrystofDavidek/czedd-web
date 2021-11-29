@@ -59,7 +59,7 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
     <div {...classes()}>
       <span {...classes("description")}>{t("found_word")}</span>
       <span data-tip data-for="found-word" style={getGenusColor(genus)} {...classes("found-word")}>
-        {removeFormat(definition.slovo)}
+        {removeFormat(language === "en" ? definition.hledane_slovo_EN : definition.hledane_slovo)}
       </span>
 
       <span data-tip data-for="desc-definition" {...classes("description")}>

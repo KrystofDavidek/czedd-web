@@ -18,8 +18,6 @@ interface IGenusBubbleProps {
 }
 
 export const GenusBubble: React.FC<IGenusBubbleProps> = ({ id, text, genus }) => {
-  console.log(text);
-
   const [, ...secondPart] = text.replaceAll("#", "").split(" ");
   const sentence = secondPart.join(" ");
 
