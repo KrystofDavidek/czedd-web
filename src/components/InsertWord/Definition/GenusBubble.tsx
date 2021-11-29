@@ -2,7 +2,7 @@ import ReactTooltip from "react-tooltip";
 import { Container } from "react-bootstrap";
 import "./GenusBubble.css";
 import BEMHelper from "react-bem-helper";
-import { format, toNewLinesAndSpaces } from "../../../utils/stringUtils";
+import { format, splitByFirstSpace, toNewLinesAndSpaces } from "../../../utils/stringUtils";
 import parse from "html-react-parser";
 import { Genus } from "../../../utils/useGenus";
 import { AiOutlineMan } from "react-icons/ai";
@@ -18,8 +18,7 @@ interface IGenusBubbleProps {
 }
 
 export const GenusBubble: React.FC<IGenusBubbleProps> = ({ id, text, genus }) => {
-  const [, ...secondPart] = text.replaceAll("#", "").split(" ");
-  const sentence = secondPart.join(" ");
+  const [, sentence] = splitByFirstSpace(text.replaceAll("#", ""));
 
   return (
     <ReactTooltip {...classes()} id={id} backgroundColor="#CFE2F3">

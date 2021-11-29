@@ -2,7 +2,7 @@ import React from "react";
 import BEMHelper from "react-bem-helper";
 import { DefinitionData } from "../../../models/DefinitionData";
 import { Card } from "./Card";
-import { removeFormat, toNewLines, format } from "../../../utils/stringUtils";
+import { removeFormat, toNewLines, format, splitByFirstSpace } from "../../../utils/stringUtils";
 import parse from "html-react-parser";
 import { Derivation } from "./Derivation";
 import "./Definition.css";
@@ -58,9 +58,20 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
   return (
     <div {...classes()}>
       <span {...classes("description")}>{t("found_word")}</span>
-      <span data-tip data-for="found-word" style={getGenusColor(genus)} {...classes("found-word")}>
-        {removeFormat(language === "en" ? definition.hledane_slovo_EN : definition.hledane_slovo)}
-      </span>
+      <div>
+        <span data-tip data-for="found-word" style={getGenusColor(genus)} {...classes("found-word")}>
+          {removeFormat(
+            language === "en"
+              ? splitByFirstSpace(definition.hledane_slovo_EN)[0] + " "
+              : splitByFirstSpace(definition.hledane_slovo)[0] + " "
+          )}
+        </span>
+        <span {...classes("detail")}>
+          {removeFormat(
+            language === "en" ? splitByFirstSpace(definition.hledane_slovo_EN)[1] : splitByFirstSpace(definition.hledane_slovo)[1]
+          )}
+        </span>
+      </div>
 
       <span data-tip data-for="desc-definition" {...classes("description")}>
         {t("desc_definition")}

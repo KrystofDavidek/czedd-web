@@ -53,3 +53,9 @@ export const toNewLines = (text: string) => {
 export const toNewLinesAndSpaces = (text: string) => {
   return toNewLines(text).replaceAll(" ", "&nbsp");
 };
+
+export const splitByFirstSpace = (text: string) => {
+  const [firstPart, ...second] = text.split(" ");
+  const secondPart = second.join(" ");
+  return [firstPart, secondPart];
+};
