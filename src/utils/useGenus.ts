@@ -19,7 +19,7 @@ export const getGenusColor = (genus: Genus): CSSProperties | undefined => {
 };
 
 const useGenus = (genre?: string) => {
-  const [genus, setGenus] = useState<Genus>(genre ? getGenus(genre) : "m");
+  const [genus] = useState<Genus>(genre ? getGenus(genre) : "m");
   return genus;
 };
 

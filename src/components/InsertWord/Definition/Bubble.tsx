@@ -27,9 +27,9 @@ interface IBubbleProps {
 }
 
 export const Bubble: React.FC<IBubbleProps> = ({ id, word, relatedWords }) => {
-  const [definition, setDefinition] = useRecoilState(searchedDefinitionState);
+  const [, setDefinition] = useRecoilState(searchedDefinitionState);
   const { push } = useHistory();
-  const [definitions, setDefinitions] = useRecoilState(definitionsState);
+  const [definitions] = useRecoilState(definitionsState);
 
   const t = useTranslation();
   const tooltip = useRef(null);

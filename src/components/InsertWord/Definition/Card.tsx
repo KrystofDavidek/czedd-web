@@ -18,7 +18,7 @@ export interface ICardProps {
 }
 
 export const Card: React.FC<ICardProps> = ({ title, text, isBubbleActive = false }) => {
-  const [activeDefinition, setDefinition] = useRecoilState(searchedDefinitionState);
+  const [activeDefinition] = useRecoilState(searchedDefinitionState);
   const word = <>{parse(toNewLines(highlightAndFormat(title[0], "word")))}</>;
   const definition = title[1] ? (
     <>

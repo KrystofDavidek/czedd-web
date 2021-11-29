@@ -19,7 +19,7 @@ interface IDefinitionProps {
 }
 
 export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
-  const [language, setLanguage] = useLanguage();
+  const [language] = useLanguage();
   const t = useTranslation();
   const genus = useGenus(definition.genre);
   const examples = { A2: [], B1: [], B2: [] } as any;

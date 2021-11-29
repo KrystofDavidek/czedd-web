@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 export const compareStrings = (textA: string, textB: string): boolean => {
   return normalize(textA) === normalize(textB);
 };
@@ -29,6 +30,11 @@ export const toItalic = (text: string) => {
 
 export const toUnderline = (text: string) => {
   return text.replace(/\@([^@]+?)\@/g, "<u>$1</u>");
+};
+
+export const highlightDerivation = (text: string) => {
+  let result = toItalic(text.replace(/\*([^*]+?)\*/g, "<strong><span class='highlight-blue'>$1</span></strong>"));
+  return result.replace(/\~([^~]+?)\~/g, "<strong><span class='highlight-gold'>$1</span></strong>");
 };
 
 export const highlightAndFormat = (text: string, bubbleId: string = "") => {

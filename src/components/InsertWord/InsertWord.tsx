@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import BEMHelper from "react-bem-helper";
 import "./InserWord.css";
@@ -17,7 +18,7 @@ const classes = new BEMHelper({
 });
 
 export const InsertWord = () => {
-  const [language, setLanguage] = useLanguage();
+  const [language] = useLanguage();
   const [definition, setDefinition] = useRecoilState(searchedDefinitionState);
   const [definitions, setDefinitions] = useRecoilState(definitionsState);
   const { word } = useParams<{ word: string }>();
