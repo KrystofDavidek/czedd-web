@@ -53,3 +53,14 @@
     margin: 1rem 1rem 2rem 1rem;
   }
 }
+
+@media screen and (max-width: 445px) {
+  .definition {
+    grid-gap: 1rem;
+  }
+
+  .definition__description {
+    justify-self: flex-start;
+    margin-right: 0rem;
+  }
+}

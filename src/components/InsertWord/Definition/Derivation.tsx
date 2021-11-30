@@ -19,8 +19,11 @@ export const Derivation: React.FC<IDerivationProps> = ({ text }) => {
     <div {...classes()}>
       <div {...classes("main")}>
         {derivation[0] && <span {...classes("text")}> {parse(highlightDerivation(derivation[0]))}</span>}
-        {derivation[1] && <span {...classes("process")}> {parse(highlightDerivation(derivation[1]))}</span>}
-        {derivation[2] && <span {...classes("process")}> {parse(highlightDerivation(derivation[2]))}</span>}
+        {derivation.slice(1).map((part, index) => (
+          <span key={index} {...classes("process")}>
+            {parse(highlightDerivation(part))}
+          </span>
+        ))}
       </div>
     </div>
   );

@@ -57,7 +57,7 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
 
   return (
     <div {...classes()}>
-      <span {...classes("description")}>{t("found_word")}</span>
+      <div {...classes("description")}>{t("found_word")}</div>
       <div>
         <span data-tip data-for="found-word" style={getGenusColor(genus)} {...classes("found-word")}>
           {removeFormat(
@@ -66,31 +66,31 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
               : splitByFirstSpace(definition.hledane_slovo)[0] + " "
           )}
         </span>
-        <span {...classes("detail")}>
+        <div {...classes("detail")}>
           {removeFormat(
             language === "en" ? splitByFirstSpace(definition.hledane_slovo_EN)[1] : splitByFirstSpace(definition.hledane_slovo)[1]
           )}
-        </span>
+        </div>
       </div>
 
-      <span data-tip data-for="desc-definition" {...classes("description")}>
+      <div data-tip data-for="desc-definition" {...classes("description")}>
         {t("desc_definition")}
-      </span>
+      </div>
       {definitionCard}
 
-      <span data-tip data-for="formation" {...classes("description")}>
+      <div data-tip data-for="formation" {...classes("description")}>
         {t("formation")}
-      </span>
+      </div>
       <Derivation text={language === "en" ? definition.popis_derivace_EN : definition.popis_derivace} />
 
-      <span data-tip data-for="language-level" {...classes("description")}>
+      <div data-tip data-for="language-level" {...classes("description")}>
         {t("language_level")}
-      </span>
+      </div>
       <div>{definition.urovne && <span {...classes("tag-title")}>{definition.urovne}</span>}</div>
 
-      <span data-tip data-for="characteristic" {...classes("description")}>
+      <div data-tip data-for="characteristic" {...classes("description")}>
         {t("characteristic")}
-      </span>
+      </div>
       {language === "en" ? (
         <div>
           {definition.tag1_EN && <span {...classes("tag")}>#{definition.tag1_EN}</span>}
@@ -107,9 +107,9 @@ export const Definition: React.FC<IDefinitionProps> = ({ definition }) => {
         </div>
       )}
 
-      <span data-tip data-for="example-sentences" {...classes("description")}>
+      <div data-tip data-for="example-sentences" {...classes("description")}>
         {t("example_sentences")}
-      </span>
+      </div>
       <div {...classes("example-levels")}>
         {examples.A2.length > 0 ? (
           <div {...classes("example-level")}>

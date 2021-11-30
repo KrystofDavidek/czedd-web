@@ -21,7 +21,7 @@ export const format = (text: string) => {
 };
 
 export const toBold = (text: string) => {
-  return text.replace(/\*([^*]+?)\*/g, "<strong>$1</strong>");
+  return text.replace(/\*([^*]+?)\*/g, "<strong>$1</strong>").replace(/\€([^€]+?)\€/g, "<strong>$1</strong>");
 };
 
 export const toItalic = (text: string) => {
@@ -33,17 +33,17 @@ export const toUnderline = (text: string) => {
 };
 
 export const highlightDerivation = (text: string) => {
-  let result = toItalic(text.replace(/\*([^*]+?)\*/g, "<strong><span class='highlight-blue'>$1</span></strong>"));
+  let result = format(text.replace(/\*([^*]+?)\*/g, "<strong><span class='highlight-blue'>$1</span></strong>"));
   return result.replace(/\~([^~]+?)\~/g, "<strong><span class='highlight-gold'>$1</span></strong>");
 };
 
 export const highlightAndFormat = (text: string, bubbleId: string = "") => {
   if (bubbleId.length > 1) {
-    return toItalic(
+    return format(
       text.replace(/\*([^*]+?)\*/g, `<strong><span data-tip data-for="${bubbleId}" class='highlight'>$1</span></strong>`)
     );
   }
-  return toItalic(text.replace(/\*([^*]+?)\*/g, "<strong><span class='highlight'>$1</span></strong>"));
+  return format(text.replace(/\*([^*]+?)\*/g, "<strong><span class='highlight'>$1</span></strong>"));
 };
 
 export const toNewLines = (text: string) => {
