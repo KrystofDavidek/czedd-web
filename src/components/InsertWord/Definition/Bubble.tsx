@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BEMHelper from "react-bem-helper";
 import "./Bubble.css";
 import ReactTooltip from "react-tooltip";
@@ -30,9 +30,22 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, word, relatedWords }) => {
   const [, setDefinition] = useRecoilState(searchedDefinitionState);
   const { push } = useHistory();
   const [definitions] = useRecoilState(definitionsState);
-
+  const [width, setWidth] = useState<number>(window.innerWidth);
   const t = useTranslation();
   const tooltip = useRef(null);
+
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  let isMobile: boolean = width <= 768;
 
   const findWord = (w: string) => {
     return definitions.find((def) => {
@@ -91,8 +104,8 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, word, relatedWords }) => {
   return (
     <ReactTooltip
       clickable
-      delayHide={100}
-      globalEventOff="click"
+      delayHide={!isMobile ? 100 : 0}
+      globalEventOff={!isMobile ? "click" : ""}
       ref={tooltip}
       {...classes()}
       id={id}

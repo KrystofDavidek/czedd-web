@@ -21,7 +21,8 @@ export const format = (text: string) => {
 };
 
 export const toBold = (text: string) => {
-  return text.replace(/\*([^*]+?)\*/g, "<strong>$1</strong>").replace(/\€([^€]+?)\€/g, "<strong>$1</strong>");
+  let result = text.replace(/\*([^*]+?)\*/g, "<strong>$1</strong>");
+  return result.replace(/€([^€]+?)€/g, "<strong>$1</strong>");
 };
 
 export const toItalic = (text: string) => {
