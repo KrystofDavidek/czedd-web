@@ -10,7 +10,6 @@ import { compareStrings } from "../../utils/stringUtils";
 import { useRecoilState } from "recoil";
 import { definitionsState, searchedDefinitionState } from "../../store/atoms";
 import { useParams, useHistory, useLocation } from "react-router-dom";
-import { useLanguage } from "../../utils/useTranslation";
 import { getData } from "../../utils/getData";
 
 const classes = new BEMHelper({
@@ -18,7 +17,6 @@ const classes = new BEMHelper({
 });
 
 export const InsertWord = () => {
-  const [language] = useLanguage();
   const [definition, setDefinition] = useRecoilState(searchedDefinitionState);
   const [definitions, setDefinitions] = useRecoilState(definitionsState);
   const [param, setParam] = useState("");

@@ -60,3 +60,7 @@ export const splitByFirstSpace = (text: string) => {
   const secondPart = second.join(" ");
   return [firstPart, secondPart];
 };
+
+export const containsStar = (text: string) => {
+  return text.includes("*");
+};

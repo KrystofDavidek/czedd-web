@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import BEMHelper from "react-bem-helper";
 import "./Bubble.css";
 import ReactTooltip from "react-tooltip";
@@ -38,6 +38,11 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, word, relatedWords }) => {
     setWidth(window.innerWidth);
   };
 
+  const handlePush = useCallback((def, w) => {
+    setDefinition(def);
+    push(`/insert/${removeFormat(w)}`);
+  }, []);
+
   useEffect(() => {
     window.addEventListener("resize", handleWindowSizeChange);
     return () => {
@@ -60,14 +65,7 @@ export const Bubble: React.FC<IBubbleProps> = ({ id, word, relatedWords }) => {
       .map((w) => {
         const def = findWord(w);
         return def ? (
-          <span
-            key={def.slovo}
-            style={{ cursor: "pointer" }}
-            onClick={() => {
-              setDefinition(def);
-              push(`/insert/${removeFormat(w)}`);
-            }}
-          >
+          <span key={def.slovo} style={{ cursor: "pointer" }} onClick={() => handlePush(def, w)}>
             {parse(format(toNewLinesAndSpaces(w)))}
           </span>
         ) : (
