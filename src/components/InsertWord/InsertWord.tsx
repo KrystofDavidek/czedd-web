@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import BEMHelper from "react-bem-helper";
 import "./InserWord.css";
 
@@ -21,6 +21,7 @@ export const InsertWord = () => {
   const [language] = useLanguage();
   const [definition, setDefinition] = useRecoilState(searchedDefinitionState);
   const [definitions, setDefinitions] = useRecoilState(definitionsState);
+  const [param, setParam] = useState("");
   const { word } = useParams<{ word: string }>();
   const { push } = useHistory();
   const location = useLocation();
@@ -30,8 +31,12 @@ export const InsertWord = () => {
   }, []);
 
   useEffect(() => {
-    if (word) {
-      search(word);
+    if (word) setParam(word);
+  }, [word]);
+
+  useEffect(() => {
+    if (param) {
+      search(param);
     } else {
       setDefinition(defaultData);
     }
@@ -62,6 +67,7 @@ export const InsertWord = () => {
         initialWord={word ? word : undefined}
         onSearch={search}
         words={definitions.map((definition) => definition.slovo)}
+        onClose={() => push("/insert")}
       />
       {(definition.id !== -1 || definition === undefined) && <Definition definition={definition} />}
     </div>

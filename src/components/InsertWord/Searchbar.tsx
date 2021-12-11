@@ -15,11 +15,12 @@ interface ISearchbarProps {
   onSearch: Function;
   initialWord?: string;
   words: string[];
+  onClose: any;
 }
 
 type Option = { label: string; value: string };
 
-export const Searchbar: React.FC<ISearchbarProps> = ({ onSearch, words, initialWord }) => {
+export const Searchbar: React.FC<ISearchbarProps> = ({ onSearch, words, initialWord, onClose }) => {
   const t = useTranslation();
   const options: Option[] = words.map((word) => {
     return {
@@ -34,6 +35,7 @@ export const Searchbar: React.FC<ISearchbarProps> = ({ onSearch, words, initialW
       setSelectedOption(option);
     } else {
       setSelectedOption({ label: "", value: "" });
+      onClose();
     }
   };
 
@@ -46,7 +48,9 @@ export const Searchbar: React.FC<ISearchbarProps> = ({ onSearch, words, initialW
   }, [initialWord]);
 
   useEffect(() => {
-    onSearch(selectedOption.value);
+    if (selectedOption.value.length > 0) {
+      onSearch(selectedOption.value);
+    }
   }, [selectedOption]);
 
   return (

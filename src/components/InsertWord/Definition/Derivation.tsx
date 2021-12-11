@@ -3,6 +3,9 @@ import BEMHelper from "react-bem-helper";
 import "./Derivation.css";
 import { highlightDerivation } from "../../../utils/stringUtils";
 import parse from "html-react-parser";
+// import { Bubble } from "./Bubble";
+// import { searchedDefinitionState } from "../../../store/atoms";
+// import { useRecoilState } from "recoil";
 
 const classes = new BEMHelper({
   name: "derivation",
@@ -13,6 +16,7 @@ export interface IDerivationProps {
 }
 
 export const Derivation: React.FC<IDerivationProps> = ({ text }) => {
+  // const [activeDefinition] = useRecoilState(searchedDefinitionState);
   const derivation: string[] = text.split("#").map((row) => row.trim());
 
   return (
@@ -25,6 +29,22 @@ export const Derivation: React.FC<IDerivationProps> = ({ text }) => {
           </span>
         ))}
       </div>
+      {/* {(activeDefinition.a2_substantivum || activeDefinition.b1_substantivum || activeDefinition.b2_substantivum) && (
+        <Bubble
+          id="substantivum"
+          relatedWords={{
+            a2: activeDefinition.a2_substantivum,
+            b1: activeDefinition.b1_substantivum,
+            b2: activeDefinition.b2_substantivum,
+          }}
+        />
+      )}
+      {(activeDefinition.a2_verbum || activeDefinition.b1_verbum || activeDefinition.b2_verbum) && (
+        <Bubble
+          id="verbum"
+          relatedWords={{ a2: activeDefinition.a2_verbum, b1: activeDefinition.b1_verbum, b2: activeDefinition.b2_verbum }}
+        />
+      )} */}
     </div>
   );
 };
