@@ -19,4 +19,5 @@ export default {
   language_level: "language level",
   characteristic: "characteristic",
   example_sentences: "example sentences",
+  footer: "Last update: 16/12/2021",
 };
