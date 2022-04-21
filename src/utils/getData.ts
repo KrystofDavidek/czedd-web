@@ -7,6 +7,7 @@ import data6 from "../assets/data/-ant_-ent.json";
 import data7 from "../assets/data/-ák.json";
 import data8 from "../assets/data/-č.json";
 import data9 from "../assets/data/-čí.json";
+import data10 from "../assets/data/-do.json";
 
 import { Data, DefinitionData } from "../models/DefinitionData";
 
@@ -20,6 +21,7 @@ const data = {
   "-ák": data7,
   "-č": data8,
   "-čí": data9,
+  "-do": data10,
 };
 
 export const getData = (): DefinitionData[] => {

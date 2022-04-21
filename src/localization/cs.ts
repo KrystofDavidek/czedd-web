@@ -19,5 +19,5 @@ export default {
   language_level: "jazyková úroveň",
   characteristic: "bližší popis",
   example_sentences: "příkladové věty",
-  footer: "Poslední aktualizace: 16. 12. 2021",
+  footer: "Poslední aktualizace: 21. 4. 2022",
 };
